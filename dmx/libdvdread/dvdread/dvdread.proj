@@ -1,0 +1,35 @@
+#include "*/*.proj"
+
+LIB dvdread
+{
+  USE(TARGET_WIN) c99msvc
+  USE(TARGET_WIN) posixmsvc
+  DEFINE STDC_HEADERS
+
+  SOURCE cmd_print.c
+  SOURCE dvd_input.c
+  SOURCE dvd_reader.c
+  SOURCE dvd_udf.c
+  SOURCE ifo_print.c
+  SOURCE ifo_read.c
+  SOURCE md5.c
+  SOURCE nav_print.c
+  SOURCE nav_read.c
+
+  HEADER bswap.h
+  HEADER cmd_print.h
+  HEADER dvd_input.h
+  HEADER dvd_reader.h
+  HEADER dvd_udf.h
+  HEADER dvdread_internal.h
+  HEADER ifo_print.h
+  HEADER ifo_read.h
+  HEADER ifo_types.h
+  HEADER md5.h
+  HEADER nav_print.h
+  HEADER nav_read.h
+  HEADER nav_types.h
+  
+  INCLUDE(TARGET_WIN) ../win32
+  INCLUDE ..
+}

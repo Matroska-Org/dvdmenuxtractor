@@ -1,0 +1,558 @@
+2003-02-22 23:28  hjort
+
+	* NEWS: Update NEWS for 0.9.4.
+
+2003-02-22 22:42  hjort
+
+	* configure.in: Version 0.9.4.
+
+2003-02-16 18:53  norpan
+
+	* libdvdread.spec: spec file (moved from oglespecs)
+
+2003-02-13 23:34  hjort
+
+	* dvdread/dvd_reader.c: If environment variable DVDREAD_NOKEYS is
+	set then skip the 'retrive all keys' step at start up.
+
+2003-02-13 23:10  hjort
+
+	* configure.in, dvdread/Makefile.am, dvdread/dvd_reader.h: Bump
+	version number, bump libtool so version, add DVDREAD_VERSION
+	define.  use $host not $target in the configure script.
+
+2003-02-13 23:09  hjort
+
+	* dvdread/ifo_print.c: More detailed printing of PGC.PG Playback
+	Mode and TT_SRPT.Playback Type.
+
+2003-02-13 23:06  hjort
+
+	* dvdread/: dvd_input.c, dvd_input.h, dvd_reader.c, dvd_udf.c:
+	Change names of fuctions not intended to be visible outside the
+	library, so that they are not matched by the (DVD.*|ifo.*|nav.*)
+	regex.
+
+2003-02-11 21:06  hjort
+
+	* dvdread/: dvd_reader.c, dvd_reader.h: The volsetid char arrays
+	should be unsigned.
+
+2003-01-31 22:03  hjort
+
+	* dvdread/dvd_reader.c: Bugfix, init dvd->css_title in Open.
+
+2003-01-26 02:47  hjort
+
+	* dvdread/dvd_reader.c: Ooops.
+
+2003-01-25 20:59  hjort
+
+	* dvdread/: dvd_reader.c, dvd_reader.h: DVDDiscID, add sanity
+	checks, fix coding style, add comments.
+
+2003-01-22 13:25  bjorn
+
+	* dvdread/: dvd_reader.c, dvd_reader.h, dvd_udf.c, dvd_udf.h: fixed
+	some warnings and changed some variables to unsigned
+
+2003-01-22 01:27  bjorn
+
+	* dvdread/: dvd_reader.c, dvd_reader.h, dvd_udf.c, dvd_udf.h: Added
+	DVDUDFVolumeInfo and DVDISOVolumeInfo.	Implemented caching for
+	part of the udf filesystem when read from a device.
+
+2003-01-22 01:25  bjorn
+
+	* src/ifo_dump.c: removed an unused variable
+
+2003-01-17 22:31  hjort
+
+	* TODO, configure.in, dvdread/ifo_read.c, dvdread/ifo_types.h: Add
+	commets, make PLT_MAIT table have level 1 first in the array not
+	last.
+
+2003-01-16 16:48  norpan
+
+	* dvdread/dvd_reader.c: Seems like DVDReadBlocks tries to decrypt,
+	which of course is not needed for ifo files. Back to using
+	DVDReadBytes.
+
+2003-01-13 15:18  norpan
+
+	* dvdread/Makefile.am: only export function names (in the so file)
+	that starts with DVD, ifo, or nav
+
+2003-01-12 10:33  norpan
+
+	* src/disc_id.c: lower case for disc id
+
+2003-01-12 10:33  norpan
+
+	* dvdread/dvd_reader.c: fixed bug, DVDDiscID now reads all of the
+	ifo file, and gives the same result as "cat *.ifo | md5sum -" in
+	the video_ts directory
+
+2003-01-12 01:49  norpan
+
+	* src/: .cvsignore, Makefile.am, disc_id.c: Added disc_id program,
+	to report disc id of a dvd
+
+2003-01-12 01:49  norpan
+
+	* dvdread/: Makefile.am, dvd_reader.c, dvd_reader.h: added
+	implementation of DVDDiscID
+
+2003-01-12 01:46  norpan
+
+	* dvdread/: md5.c, md5.h: md5 implementation (from textutils 2.1)
+
+2003-01-06 21:13  hjort
+
+	* dvdread/dvd_reader.c, dvdread/dvd_udf.c, dvdread/ifo_print.c,
+	dvdread/ifo_read.c, dvdread/nav_print.c, dvdread/nav_read.c,
+	src/play_title.c, src/title_info.c: Make config.h be included first
+	in all c files. Update copyright years.
+
+2003-01-06 20:57  hjort
+
+	* src/ifo_dump.c: Don't use getopt.
+
+2003-01-06 20:36  hjort
+
+	* dvdread/: ifo_print.c, ifo_read.c: Read and print Parental
+	Management Information Table.
+
+2003-01-06 20:33  hjort
+
+	* dvdread/: ifo_print.c, ifo_read.c: Read, keep around and print
+	the extra offset tables.  Add some checking to the multichannel
+	audio attributes.
+
+2003-01-06 20:07  hjort
+
+	* dvdread/ifo_types.h: Add MultiChannel Extension, correct Parental
+	Management Information and add some fields to keep various offset
+	tables around (req by Olaf Beck).
+
+2003-01-06 19:42  hjort
+
+	* dvdread/ifo_read.c: Oops, remember to byte swap the TMAP data,
+	since it's in bigendian format.
+
+2003-01-06 19:18  hjort
+
+	* dvdread/ifo_print.c: Remove unused level argument that we earier
+	used for controlling logging.
+
+2003-01-06 19:18  hjort
+
+	* configure.in: Change the configure help text s that it's clear
+	that the path argument to --with-libdvdcss is optional.
+
+2003-01-06 18:36  hjort
+
+	* bootstrap, configure.in: Correct the use of build tools and the
+	testing of the --enable-warnings flag.
+
+2003-01-02 21:13  hjort
+
+	* dvdread/nav_types.h: Add some comments.
+
+2002-12-31 00:49  hjort
+
+	* dvdread/nav_read.c: Argh, unbreak navRead_PCI for little endian
+	systems.
+
+2002-12-29 01:06  hjort
+
+	* configure.in, dvdread/Makefile.am, dvdread/dvd_input.c,
+	dvdread/dvd_input.h, src/Makefile.am: Add --with-libdvdcss which if
+	given makes us link to libdvdcss rather than trying to dlopen it at
+	runtime.
+
+2002-12-28 00:57  hjort
+
+	* dvdread/: ifo_print.c, ifo_types.h: Add application mode/info
+	fields to the audio attributes.
+
+2002-12-28 00:35  hjort
+
+	* dvdread/: ifo_print.c, ifo_types.h: More cleanups of the
+	attribute code.
+
+2002-12-27 23:56  hjort
+
+	* dvdread/: ifo_print.c, ifo_read.c, ifo_types.h: Add some more
+	fields to the video/subpicture attributes and the pgci_lu struct. 
+	Only touches things that where previously zero and/or unknown.
+
+2002-12-27 23:16  hjort
+
+	* configure.in: Change the behaviour of adding all the extra waring
+	flags to default to off.
+
+2002-12-27 23:14  hjort
+
+	* dvdread/ifo_types.h: Convert all // comments to /* .. */ ones.
+
+2002-12-27 22:58  hjort
+
+	* configure.in, dvdread/dvd_udf.c, dvdread/ifo_print.c,
+	dvdread/ifo_read.c, dvdread/nav_print.c, dvdread/nav_read.c: Remove
+	the last uses of assert.h from dvdread/.  Update comments in
+	configure.in.
+
+2002-12-24 18:01  hjort
+
+	* dvdread/dvd_reader.c: Opps, you shouldn't compare intergers with
+	NULL, thanks harm.
+
+2002-12-15 18:50  hjort
+
+	* configure.in, dvdread/nav_read.c, dvdread/nav_types.h: Fix
+	problem with alignment for Sun's Forte compiler.  Now you can use
+	either Forte or GCC to compile libdvdread.
+
+2002-12-15 18:00  bjorn
+
+	* dvdread/: Makefile.am, dvdread_internal.h, ifo_read.c,
+	nav_read.c: changed asserts to fprintfs
+
+2002-12-15 16:40  hjort
+
+	* .cvsignore: Update.
+
+2002-12-15 00:53  hjort
+
+	* dvdread/: ifo_read.c, ifo_read.h: The first play PGC structure is
+	only optional.
+
+2002-12-15 00:47  hjort
+
+	* configure.in, dvdread/bswap.h: Add support for FreeBSD endian
+	swap functions.
+
+2002-11-18 21:20  hjort
+
+	* dvdread/dvd_reader.c: Add some argument checking to the
+	functions.
+
+2002-08-18 17:19  hjort
+
+	* dvdread/: ifo_print.c, ifo_print.h, ifo_read.c, ifo_read.h,
+	ifo_types.h: Add types for VTS_TMAPT. Add read/parse functions for
+	VTS_TMAPT.  Add printing functions for VTS_TMAPT.
+
+2002-08-15 19:40  hjort
+
+	* bootstrap, acinclude.m4, configure.in: Check for inttypes.h, if
+	not found create a file with default choices.
+
+2002-08-11 18:50  hjort
+
+	* dvdread/nav_types.h: Update doxygen comments.
+
+2002-08-02 14:09  hjort
+
+	* dvdread/: dvd_input.c, dvd_input.h: Declare the function pointers
+	extern in the header file so there doesn't end up beeing more than
+	one instance.
+
+2002-07-26 23:27  hjort
+
+	* dvdread/: dvd_reader.h, nav_print.h, nav_read.h: More doxygen
+	comments.
+
+2002-07-12 21:44  hjort
+
+	* dvdread/dvd_reader.h: Big Doxygen documentation update.
+
+2002-07-12 20:38  hjort
+
+	* INSTALL: Newer version of the auto* tools.
+
+2002-07-11 23:48  hjort
+
+	* dvdread/ifo_read.c: Make DVDFileSeek_ inline and try opening .BUP
+	if .IFO fails.
+
+2002-07-11 23:40  hjort
+
+	* dvdread/dvd_reader.c: Don't segfault when trying to read past the
+	end of a file in Path mode.  Fix DVDReadBlocksPath so to not read
+	an extra block at the end.
+
+2002-07-11 23:38  hjort
+
+	* dvdread/: dvd_input.c, dvd_input.h, dvd_reader.c: Remove the
+	flags argument to DVDinput_seek function.  Update all calls. 
+	Change the calles that did tha key seach to instead use
+	DVDinput_title.
+
+2002-07-11 20:07  hjort
+
+	* dvdread/Makefile.am, src/Makefile.am: Fix so that one can build
+	outside the source tree.
+
+2002-05-26 00:45  d95hjort
+
+	* NEWS: Update.
+
+2002-05-25 23:50  d95hjort
+
+	* configure.in: Bump version for release.  Fix reveresed
+	comparison.
+
+2002-05-25 22:09  d95hjort
+
+	* dvdread/Makefile.am: Bump the library revision for the pending
+	release.
+
+2002-05-25 22:09  d95hjort
+
+	* dvdread/dvd_udf.c: Bug fix.  Make sure that the UDF code get all
+	the blocks it asks for (this is to avoid some spurious failiurs).
+
+2002-05-25 22:07  d95hjort
+
+	* dvdread/dvd_reader.c: More bug fixes from the big change.  Add
+	code to keep track of the current title key, calling DVDCSS_title
+	to change when needed.	Add more comments.  Add Mac OS X / Darwin
+	support.
+
+2002-05-25 21:58  d95hjort
+
+	* configure.in: Add Mac OS X / Dawin support, general cleanups and
+	remove the arch specific (and general) optimization flags.
+
+2002-05-25 21:43  d95hjort
+
+	* dvdread/: dvd_input.c, dvd_input.h: Mark some things const.
+
+2002-05-25 21:41  d95hjort
+
+	* dvdread/ifo_print.c: Mark two local functions as static.
+
+2002-05-25 21:38  d95hjort
+
+	* dvdread/ifo_read.c: Improve error messages and fix a ineffectual
+	assert.
+
+2002-04-22 17:42  d95hjort
+
+	* .cvsignore, configure.in, dvdread/Makefile.am,
+	dvdread/dvd_input.c, dvdread/dvd_input.h, dvdread/dvd_reader.c,
+	dvdread/dvdcss.h: Update to use new dvd_input abstraction layer. 
+	Can now use libdvdcss also for files on normal filsystem (non UDF
+	DVD image).
+
+2002-04-20 23:14  d95hjort
+
+	* dvdread/nav_types.h: Doxygen markup.
+
+2002-04-07 20:17  d95hjort
+
+	* dvdread/: nav_print.h, nav_read.h: More doxygen fixes.
+
+2002-04-07 19:51  d95hjort
+
+	* dvdread/bswap.h, dvdread/dvd_reader.c, dvdread/dvd_reader.h,
+	dvdread/dvd_udf.c, dvdread/dvd_udf.h, dvdread/ifo_print.h,
+	dvdread/ifo_read.h, dvdread/ifo_types.h, dvdread/nav_print.h,
+	dvdread/nav_read.c, dvdread/nav_read.h, dvdread/nav_types.h,
+	src/ifo_dump.c, src/play_title.c, src/title_info.c: Fix doxygen
+	errors in the copyright headers.
+
+2002-04-07 19:17  d95hjort
+
+	* dvdread/: dvd_reader.c, dvd_reader.h, dvd_udf.h, ifo_print.c,
+	ifo_print.h, ifo_read.c, ifo_read.h, ifo_types.h, nav_print.c,
+	nav_print.h, nav_read.c, nav_types.h: Fix copyright headers, adress
+	and years.
+
+2002-04-07 01:15  d95hjort
+
+	* Makefile.am: Add a newline.
+
+2002-04-07 01:14  d95hjort
+
+	* dvdread/ifo_print.c: Some small changes to what is printed for
+	video and audio attributes.
+
+2002-04-07 01:08  d95hjort
+
+	* dvdread/dvd_reader.h: Comments formating.
+
+2002-04-07 01:08  d95hjort
+
+	* dvdread/: ifo_read.c, ifo_read.h: Up the limit on the number of
+	commands that might be pressent in a PGC to 255.  It seems that
+	First Play PGC might be optional, at lest some DVDs are masterd
+	this way. Close open comment.
+
+2001-11-29 19:03  hh
+
+	* dvdread/: bswap.h, dvd_reader.c, dvd_reader.h, dvd_udf.c,
+	dvd_udf.h, ifo_print.h, ifo_read.h, ifo_types.h, nav_print.h,
+	nav_read.h, nav_types.h: Fixes from Marc Espie: Move include guards
+	to teh very start of the files.  Remove prameter names form
+	prototypes.
+
+2001-11-28 20:16  hh
+
+	* dvdread/: ifo_print.c, ifo_read.c: Handle mastering error on
+	Enemy of the State region 2 (de).
+
+2001-10-15 20:16  hh
+
+	* NEWS, configure.in, dvdread/bswap.h, dvdread/dvd_reader.c,
+	dvdread/ifo_read.c: Bump version to 0.9.2 for release (2001-10-11).
+	 Add support for BSD/OS. Make sure that the raw device is used on
+	all BSD variants for the CSS ioctls to work correctly.	Small bug
+	fix for access to mounted DVD via soft-links and a malloc/free
+	mistake.  Increase an assert level for pgcn numbers in the part of
+	title list.
+
+2001-09-28 20:25  hh
+
+	* dvdread/ifo_read.c: Allow Titles with 0 PTTs.  Allow a ptt_srpt
+	with an empty title.  Allow empty Cell Address tables.	Allow an
+	empty VOBU Address Map. This is to get "Magic Knight Rayearth:
+	Daybreak" to work, it might be master wrong.  Hard to se how a VTS
+	without any PGCs, Cells or VOBUs can be correct.
+
+2001-09-28 20:11  hh
+
+	* dvdread/: bswap.h, dvd_reader.c: Add NetBSD support.	Change the
+	code to use /dev/rcd* rather than /dev/cd* for all *BSD, this is
+	apparently needed to use the CSS ioctls.  Extend bswap with NetBSD
+	header.
+
+2001-09-18 03:53  hh
+
+	* dvdread/Makefile.am, dvdread/bswap.h, dvdread/dvd_reader.c,
+	dvdread/ifo_read.c, NEWS, configure.in: Change the way the endian
+	swaps are defined and make sure Solaris x86 works.  Fix from
+	Juergen Keil for a bug that caused libdvdread to close random fds. 
+	Update the limit on the number of pgcs in the pgcit to 10000.
+	Correct bug in 0.9.0 that made using a DVD located on a normal
+	filsystem impossible.  Bump the version in confgure.in to 0.9.1 and
+	the library revision number for the release.
+
+2001-09-18 02:36  hh
+
+	* Makefile.am, NEWS, configure.in, dvdread/Makefile.am,
+	dvdread/dvd_reader.c, dvdread/dvd_reader.h, dvdread/dvdcss.h,
+	dvdread/ifo_read.c, src/play_title.c: Include the bootstrap script
+	in the dist.  Change the package name to libdvdread (was dvdread). 
+	Use stat64 so that using an image file of a DVD should work. 
+	Change some more types in the interface to use int rather than
+	int32_t, also some internal changes of types.  Make it crack the
+	keys for all titles when opening the first as to not pause later
+	during playback.  Make sure to use the raw device name for access
+	under Solaris as using the CSS calls does not work on the block
+	device.  Make sure to get an absolute path for the directory name
+	used to search the mount table with.  Update/correct some error
+	messages.  This is what was released as libdvdread-0.9.0.
+
+2001-09-02 23:45  hh
+
+	* dvdread/Makefile.am, dvdread/dvd_udf.c, dvdread/dvd_udf.h,
+	src/play_title.c: Add some header files to the dependencies of
+	libdvdread so that they are included in the dist. Change the types
+	of UDFFindFile.  Update the partiotion handling in the UDF code. 
+	Correct play_title for the new incterface (expect blocks not bytes
+	read).
+
+2001-08-28 21:40  hh
+
+	* dvdread/ifo_read.c: Do not assume a pgci_ut has been
+	read/allocated. Check ponter before dereferring it to free
+	sub-componets.
+
+2001-08-28 21:34  hh
+
+	* dvdread/dvd_udf.c: Handle files with length 0. It faild and
+	reported the location and size of the director that a file was
+	located in if it didn't have any block allocated for it content.
+
+2001-08-27 02:13  vektor
+
+	* dvdread/: dvd_reader.c, dvd_reader.h:  - Added a GetFileSize
+	style call.
+	 - Made the close calls a bit more robust.
+	 - Removed an annoying printf.
+
+2001-08-22 23:59  hh
+
+	* NEWS, configure.in, dvdread/Makefile.am, dvdread/dvd_reader.c,
+	dvdread/dvd_reader.h, dvdread/dvd_udf.c, dvdread/ifo_print.c,
+	dvdread/ifo_read.c, dvdread/nav_print.c, dvdread/nav_read.c,
+	dvdread/nav_read.h, src/play_title.c: Some API changes, sorry for
+	this, but now the interface nolonger has any reference to off64_t. 
+	Remove unused length parameter to the nav functions.  Return blocks
+	read rather than bytes read for the DVDReadBlocks function.  Added
+	switch to enable lots of gcc waring flags. Correct lots of warnings
+	discoverd by the new flags.
+
+2001-08-18 01:22  hh
+
+	* README, configure.in, dvdread/dvd_reader.c, dvdread/dvd_reader.h:
+	Change _all_ occurrences of libcss to libdvdcss this time.
+
+2001-08-02 02:09  hh
+
+	* dvdread/dvdcss.h: Add the libdvdcss's header file so we compile
+	without it beeing installed.
+
+2001-08-02 02:05  hh
+
+	* TODO, configure.in, dvdread/Makefile.am, dvdread/bswap.h,
+	dvdread/dvd_reader.c, dvdread/dvd_reader.h, dvdread/dvd_udf.c,
+	dvdread/dvd_udf.h, dvdread/ifo_print.c, dvdread/ifo_read.c,
+	src/Makefile.am: Changed to use libdvdcss (from the VideoLAN guys)
+	by vektor.  FreeBSD fixes from Marc van Woerkom and OpenBSD fixes
+	from Björn Sandell.  Small configure fixes to work better on *BSD
+	and other systems.  Fix src/Makefile.am thinko/typo.  Convert
+	dvd_udf to use uint[8|16|32]_t types.
+
+2001-08-02 01:27  hh
+
+	* AUTHORS: Give credit to Christian Wolff
+	<scarabaeus@convergence.de> for the UDF code.
+
+2001-06-25 04:32  hh
+
+	* .cvsignore, AUTHORS, COPYING, ChangeLog, Makefile.am, INSTALL,
+	NEWS, README, TODO, acinclude.m4, bootstrap, configure.in,
+	dvdread/.cvsignore, dvdread/Makefile.am, dvdread/bswap.h,
+	dvdread/dvd_reader.c, dvdread/dvd_reader.h, dvdread/dvd_udf.c,
+	dvdread/dvd_udf.h, dvdread/ifo_print.c, dvdread/ifo_print.h,
+	dvdread/ifo_read.c, dvdread/ifo_read.h, dvdread/ifo_types.h,
+	dvdread/nav_print.c, dvdread/nav_print.h, dvdread/nav_read.c,
+	dvdread/nav_read.h, dvdread/nav_types.h, src/.cvsignore,
+	src/Makefile.am, src/ifo_dump.c, src/play_title.c,
+	src/title_info.c: Initial revision
+
+2001-06-25 04:32  hh
+
+	* .cvsignore, AUTHORS, COPYING, ChangeLog, Makefile.am, INSTALL,
+	NEWS, README, TODO, acinclude.m4, bootstrap, configure.in,
+	dvdread/.cvsignore, dvdread/Makefile.am, dvdread/bswap.h,
+	dvdread/dvd_reader.c, dvdread/dvd_reader.h, dvdread/dvd_udf.c,
+	dvdread/dvd_udf.h, dvdread/ifo_print.c, dvdread/ifo_print.h,
+	dvdread/ifo_read.c, dvdread/ifo_read.h, dvdread/ifo_types.h,
+	dvdread/nav_print.c, dvdread/nav_print.h, dvdread/nav_read.c,
+	dvdread/nav_read.h, dvdread/nav_types.h, src/.cvsignore,
+	src/Makefile.am, src/ifo_dump.c, src/play_title.c,
+	src/title_info.c: libdvdread provides a simple foundation for
+	reading DVD-Video discs and images.
+	
+	It offers DVD applications:
+	
+	1. A simple abstraction for reading the files on a DVD	 
+	(dvd_reader.h).  2. A simple library for parsing the information
+	(IFO) files    (ifo_read.h/ifo_types.h).  3. A simple library for
+	parsing the navigation (NAV) packets	(nav_read.h/nav_types.h).
+

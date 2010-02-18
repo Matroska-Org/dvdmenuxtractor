@@ -1,0 +1,14 @@
+GROUP vobparser
+{
+  SOURCE IFOContent.cpp
+  SOURCE IFOFile.cpp
+  SOURCE VobParser.cpp
+  SOURCE iso/iso_lang.c
+
+  HEADER IFOContent.h
+  HEADER IFOFile.h
+  HEADER VobParser.h
+  HEADER iso/iso_lang.h
+  
+  INCLUDE ..
+}

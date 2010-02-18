@@ -1,0 +1,7 @@
+
+* we don't have any functions for reading / printing TXT_MGI
+* rename zero_1 and add bitfields / macro constants in pgcit_srpt
+  - done, are any of the other pgci_t pgci_ut_t pgci_lu_t affected?
+* if an encrypted block is being read and libdvdcss is unavailable,
+  we should probably return 0 to help it fail.
+

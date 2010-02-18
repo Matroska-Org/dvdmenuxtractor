@@ -1,0 +1,38 @@
+#include "*/*.proj"
+
+LIB dmx
+{
+  PROJECT_VERSION  0.9.9
+  PROJECT_BUILD    1278
+  PROJECT_NAME     "DMX"
+  PROJECT_VENDOR   qdmx
+  PROJECT_FOURCC   QDMX
+  
+  USE dvdread
+  USE vobparser
+  USE mpegparser
+  
+  DEFINE __STDC_LIMIT_MACROS
+  DEFINE(QT_NO_DEBUG) QT_NO_DEBUG_STREAM
+
+  INCLUDE libdvdread
+  
+  INCLUDE(COMPILER_MSVC) libdvdread/win32
+  INCLUDE(COMPILER_MSVC) "$(QTDIR)/include"
+  INCLUDE(COMPILER_MSVC) "$(QTDIR)/include/QtXml"
+  INCLUDE(COMPILER_MSVC) "$(QTDIR)/include/QtCore"
+  
+  INCLUDE(COMPILER_GCC)  "$(QTDIR)/include/qt4/"
+  INCLUDE(COMPILER_GCC)  "$(QTDIR)/include/qt4/QtXml"
+  INCLUDE(COMPILER_GCC)  "$(QTDIR)/include/qt4/QtCore"
+  
+  SOURCE dmx.cpp
+  SOURCE utilities.cpp
+  SOURCE chaptermanager.cpp
+  SOURCE dmxselectionitem.cpp
+
+  HEADER_QT4 dmx.h
+  HEADER utilities.h
+  HEADER chaptermanager.h
+  HEADER dmxselectionitem.h
+}

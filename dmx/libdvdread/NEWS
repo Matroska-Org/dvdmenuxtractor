@@ -1,0 +1,46 @@
+Version 0.9.4
+  Environment variable DVDREAD_NOKEYS can be used to turn off reading all key.
+  Only export the functions in the public interface.
+  New functions DVDDiscID, DVDUDFVolumeInfo and DVDISOVolumeInfo.
+  Can optionally link with libdvdcss instead of trying to dlopen it.
+  Several data structures now have more fields that where unknown earlier.
+  Compilable with Sun's Forte compiler.
+  Remove all asserts, now just print an error message and continues.
+  Use swap functions in FreeBSD 5.
+  Add types, read and print functions for VTS_TMAPT (Time map table).
+  Add Multichannel Extension, correct PLT_MAIT (Parental Management) info.
+  More Doxygen markup and comments.
+  Fix a seg fault and key issue for access to DVDs as a collection of files.
+  Build fixes.
+
+Version 0.9.3
+  Support for MacOS X/Darwin have been added.
+  Ported to use libdvdcss2 (1.2.0 and later).
+  Can now use libdvdcss to also decrypt files on a normal filsystem.
+  A bit more tolerant of incorrectly mastered DVDs.
+  Build robustness fixes from Mark Espie.
+  Added some Doxygen markup and comments.
+
+Version 0.9.2
+  Add support for BSD/OS. Make sure that the raw device is used on all
+  BSD variants for the CSS ioctls to work correctly.  Small bug fix for
+  access to mounted DVD via soft-links and a malloc/free mistake.
+  Increase an assert level for pgcn numbers in the part of title list.
+  
+Version 0.9.1
+  Change the way the endian swaps are defined and make sure Solaris x86 works.
+  Fix from Juergen Keil for a bug that caused libdvdread to close random fds.
+  Update the limit on the number of pgcs in the pgcit to 10000.
+  Correct bug in 0.9.0 that made using a DVD located on a normal filsystem
+  impossible.
+
+Version 0.9.0
+  API breakage, new types to not be influenced by differing off_t types 
+  and DVDReadBlocks now returns blocks read not bytes read.
+  Changed to use libdvdcss (from VideoLAN).
+  Add support for finding the raw devices of a DVD on Solaris.
+  FreeBSD fixes from Marc van Woerkom and OpenBSD fixes from Björn Sandell.
+  Configure fixes to work better on *BSD and other systems.
+
+Version 0.8.0
+  Initial public release.

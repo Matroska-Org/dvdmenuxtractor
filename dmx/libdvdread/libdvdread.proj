@@ -1,0 +1,11 @@
+#include "*/*.proj"
+
+WORKSPACE dvdread
+{
+  USE dvdread
+  USE disc_id
+  USE filestat
+  USE ifo_dump
+  USE play_title
+  USE title_info
+}

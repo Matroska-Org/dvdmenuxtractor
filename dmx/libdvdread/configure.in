@@ -1,0 +1,154 @@
+AC_INIT(dvdread/dvd_reader.c)
+AM_INIT_AUTOMAKE(libdvdread, 0.9.4)
+AM_CONFIG_HEADER(config.h)
+AM_MAINTAINER_MODE
+AC_CANONICAL_HOST
+
+AC_PROG_CC
+AC_STDC_HEADERS
+
+dnl
+dnl  Check the operating system
+dnl
+case x"$host_os" in
+  xdarwin*)
+    CFLAGS="${CFLAGS} -no-cpp-precomp"
+    AC_DEFINE(__DARWIN__, 1, Have a Mac OS X system)
+    ;;
+  x*)
+    ;;
+esac
+
+dnl
+dnl non-gcc flags - we probably need exact configuration triplets here.
+dnl
+if test x"$GCC" != x"yes"; then
+    case x"$host" in
+    xsparc-sun-solaris*)
+dnl #pragma pack(1) doesn't seem to change Fortes oppinion about what it
+dnl can assume about packing when accessing things of the types that where
+dnl declared within region of #pragma pack(1), so we are forced to use the
+dnl *big hammer* and tell it that it can't make any assumptions at all for
+dnl anyting anywhere... to bad really.  Even worse, code using the libdvdread
+dnl headers for ifo and/or nav structures must be compiled in the same way ;(
+        OPT_CFLAGS="$CFLAGS -xCC -xmemalign"
+        AC_TRY_CFLAGS([$OPT_CFLAGS],[CFLAGS=$OPT_CFLAGS])
+dnl      AC_MSG_ERROR(You must use GCC to compile this code)
+	;;
+    esac
+fi
+
+dnl
+dnl Checks for libtool - this must be done after we set cflags (abi issues)
+dnl
+AM_PROG_LIBTOOL
+
+dnl
+dnl We use dlopen for libdvdcss access by default but if --with-libdvdcss
+dnl is given we link with it instead.
+dnl
+link_dvdcss=no
+dvdcss_path=""
+AC_ARG_WITH([libdvdcss],
+    [  --with-libdvdcss[=PATH]   force linking against libdvdcss],
+    [if test x"$withval" != xno; then
+       link_dvdcss=yes
+     fi
+     if test x"$withval" != xyes; then
+       dvdcss_path=$withval
+     fi])
+
+if test x"$link_dvdcss" != xyes; then
+dnl dlopen libdvdcss
+  AC_CHECK_FUNC(dlopen, 
+    [ DL_LIBS="" ], 
+    AC_CHECK_LIB(dl, dlopen, 
+      [ DL_LIBS=-ldl ], 
+      AC_MSG_ERROR(You need libdl (dlopen))
+    )
+  )
+else
+dnl link with libdvdcss
+  if test -z "$dvdcss_path"; then
+    AC_CHECK_LIB(dvdcss, dvdcss_interface_2, 
+        [ CSS_LIBS=-ldvdcss ], 
+        AC_MSG_ERROR(You need libdvdcss.so.2 or later)
+        )
+    AC_CHECK_HEADERS(dvdcss/dvdcss.h, 
+      [ ],
+      AC_MSG_ERROR(You need libdvdcss (dvdcss.h))
+    )
+  else
+    saved_CFLAGS=$CFLAGS
+    CFLAGS="$CFLAGS -L$dvdcss_path/lib"
+    AC_CHECK_LIB(dvdcss, dvdcss_interface_2, 
+        [ CSS_LIBS="-L$dvdcss_path/lib -R$dvdcss_path/lib -ldvdcss" 
+	  CSS_CFLAGS=-I$dvdcss_path/include ], 
+        AC_MSG_ERROR(You need libdvdcss.so.2 or later)
+        )
+    CFLAGS=$saved_CFLAGS
+    dnl -w added to shutup GCC3.1's cpp warning about -I/usr/local
+    saved_CPPFLAGS=$CPPFLAGS
+    CPPFLAGS="-w $CPPFLAGS -I$dvdcss_path/include"
+    AC_CHECK_HEADERS(dvdcss/dvdcss.h, 
+      [ ],
+      AC_MSG_ERROR(You need libdvdcss (dvdcss.h))
+    )
+    CPPFLAGS=$saved_CPPFLAGS
+  fi
+fi
+
+AC_SUBST(DL_LIBS)
+AC_SUBST(CSS_LIBS)
+AC_SUBST(CSS_CFLAGS)
+
+dnl 
+dnl Check for inttype.h, if not present on the system generate one in ".".
+dnl
+AC_CHECK_GENERATE_INTTYPES(.)
+
+dnl
+dnl Checks for header files.
+dnl
+AC_CHECK_HEADERS([byteswap.h sys/bswap.h sys/endian.h sys/param.h limits.h])
+
+
+AC_C_BIGENDIAN
+AC_C_CONST
+AC_C_INLINE
+AC_TYPE_SIZE_T
+
+dnl
+dnl Linux and Solaris needs this to make lseek and others be 64 bit
+dnl
+CFLAGS="-D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 $CFLAGS"
+
+dnl
+dnl It's nice to have clean code...
+dnl
+AC_ARG_ENABLE([warnings],
+    [  --enable-warnings       enable -Wall and treat warnings as errors])
+if test x"$enable_warnings" = xyes; then
+    if test x"$GCC" = xyes; then
+	OPT_CFLAGS="-Wall -Werror $CFLAGS"
+	AC_TRY_CFLAGS([$OPT_CFLAGS],[CFLAGS=$OPT_CFLAGS])
+    fi
+fi
+
+dnl
+dnl It's good to be paranoid ;-)
+dnl
+AC_ARG_ENABLE([pedantic],
+    [  --enable-pedantic       enable various extra warnings for gcc])
+if test x"$enable_pedantic" = xyes; then
+    if test x"$GCC" = xyes; then
+	dnl  -Wtraditional is not included here!
+	CFLAGS="$CFLAGS -pedantic -Wall -W -Waggregate-return -Wbad-function-cast -Wcast-align -Wcast-qual -Wchar-subscripts -Wcomment -Wconversion -Wformat -Wid-clash-30 -Wimplicit -Wimplicit-function-delcaration -Wimplicit-int -Wlong-long -Wmain -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-import -Wno-parentheses -Wparentheses -Wpointer-arith -Wredundant-decls -Wreturn-type -Wshadow -Wsign-compare -Wstrict-prototypes -Wswitch -Wtrigraphs -Wunused -Wwrite-strings"
+    fi
+fi
+
+AC_OUTPUT([
+Makefile
+src/Makefile
+dvdread/Makefile
+])

@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/DMXWizard" >
+        <file>Resources/back.png</file>
+        <file>Resources/dmx.png</file>
+        <file>Resources/error.png</file>
+        <file>Resources/log.png</file>
+        <file>Resources/next.png</file>
+        <file>Resources/quit.png</file>
+        <file>Resources/warning.png</file>
+    </qresource>
+</RCC>

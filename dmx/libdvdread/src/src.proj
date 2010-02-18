@@ -1,0 +1,51 @@
+#include "*/*.proj"
+
+CON disc_id
+{
+  USE dvdread
+
+  SOURCE disc_id.c
+  
+  INCLUDE(TARGET_WIN) ../win32
+  INCLUDE ..
+}
+
+CON filestat
+{
+  USE dvdread
+
+  SOURCE filestat.c
+  
+  INCLUDE(TARGET_WIN) ../win32
+  INCLUDE ..
+}
+
+CON ifo_dump
+{
+  USE dvdread
+
+  SOURCE ifo_dump.c
+  
+  INCLUDE(TARGET_WIN) ../win32
+  INCLUDE ..
+}
+
+CON play_title
+{
+  USE dvdread
+
+  SOURCE play_title.c
+  
+  INCLUDE(TARGET_WIN) ../win32
+  INCLUDE ..
+}
+
+CON title_info
+{
+  USE dvdread
+
+  SOURCE title_info.c
+  
+  INCLUDE(TARGET_WIN) ../win32
+  INCLUDE ..
+}

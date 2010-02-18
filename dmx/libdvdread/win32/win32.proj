@@ -1,0 +1,17 @@
+#include "*/*.proj"
+
+GROUP posixmsvc
+{
+  SOURCE dirent.c
+  DEFINE _CRT_NON_CONFORMING_SWPRINTFS
+
+  HEADER dirent.h
+  HEADER gtchar.h
+  HEADER posix.h
+}
+
+GROUP c99msvc
+{
+  HEADER inttypes.h
+  HEADER stdint.h
+}

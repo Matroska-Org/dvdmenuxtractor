@@ -1,0 +1,10 @@
+CONFIG_FILE config.h
+PLATFORM_FILES coremake
+
+#include "*/*.proj"
+
+WORKSPACE DvdMenuXtractor
+{
+  USE dmxwizard
+  USE dmxconsole
+}
