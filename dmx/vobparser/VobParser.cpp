@@ -508,8 +508,8 @@ void VobParser::ParsePCI()
 	debug(QString("vobu_e_ptm: %1\n").arg(m_pci.vobu_e_ptm));
 	debug(QString("vobu_se_e_ptm: %1\n").arg(m_pci.vobu_se_e_ptm));
 	debug(QString("e_eltm: %1\n").arg(m_pci.c_eltm));
-	debug(QString("vobu_isrc: ...\n").toAscii());
-	debug(QString("nsml_agli_dsta: ...\n").toAscii());
+	debug(QString("vobu_isrc: ...\n").toLatin1());
+	debug(QString("nsml_agli_dsta: ...\n").toLatin1());
 	debug(QString("hli_ss: %1\n").arg(m_pci.hli_ss));
 }
 

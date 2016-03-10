@@ -73,8 +73,8 @@ bool OutputReader::redirect()
   	return false;
 
 	// redirect stdout and stderr to corresponding files
-	stdoutStream = freopen(stdoutFileName.toAscii(), "wc", stdout);
-	stderrStream = freopen(stderrFileName.toAscii(), "wc", stderr);
+	stdoutStream = freopen(stdoutFileName.toLatin1(), "wc", stdout);
+	stderrStream = freopen(stderrFileName.toLatin1(), "wc", stderr);
 
 	if ((stderrStream == 0) || (stdoutStream == 0))
 		return false;
