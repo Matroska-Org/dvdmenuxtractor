@@ -18,13 +18,10 @@ LIB dmx
   INCLUDE libdvdread
   
   INCLUDE(COMPILER_MSVC) libdvdread/win32
-  INCLUDE(COMPILER_MSVC) "$(QTDIR)/include"
-  INCLUDE(COMPILER_MSVC) "$(QTDIR)/include/QtXml"
-  INCLUDE(COMPILER_MSVC) "$(QTDIR)/include/QtCore"
   
-  INCLUDE(COMPILER_GCC)  "$(QTDIR)/include/qt4/"
-  INCLUDE(COMPILER_GCC)  "$(QTDIR)/include/qt4/QtXml"
-  INCLUDE(COMPILER_GCC)  "$(QTDIR)/include/qt4/QtCore"
+  INCLUDE "$(QTDIR)/include"
+  INCLUDE "$(QTDIR)/include/QtXml"
+  INCLUDE "$(QTDIR)/include/QtCore"
   
   SOURCE dmx.cpp
   SOURCE utilities.cpp
