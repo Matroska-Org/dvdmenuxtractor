@@ -24,9 +24,6 @@
 
 #include <inttypes.h>	// include local inttypes for WINDOWS
 #include <sys/types.h>
-#if defined(WIN32) || defined(WIN64)
-typedef SSIZE_T ssize_t;
-#endif
 
 /**
  * The DVD access interface.
