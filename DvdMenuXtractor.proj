@@ -1,5 +1,5 @@
 CONFIG_FILE config.h
-PLATFORM_FILES coremake
+//PLATFORM_FILES /bin/coremake
 
 #include "*/*.proj"
 
