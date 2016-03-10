@@ -20,6 +20,7 @@
 
  **/
 
+#include <string.h>
 #include "M2VParser.h"
 
 //#include "common.h"
