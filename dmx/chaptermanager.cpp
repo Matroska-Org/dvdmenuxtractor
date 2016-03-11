@@ -10,7 +10,7 @@ bool ChapterManager::generateScript(const IFOFile& ifoFile, const QString& filen
 {
 	static unsigned char _PrivateVTS[] = {0x30, 0x80, 0x00, 0x00};
 	static unsigned char _PrivateTT[]  = {0x28, 0x00, 0x00, 0x00};
-	uint64_t start_timeH = uint64_t(-1);
+    uint64_t start_timeH = uint64_t(-1); // TODO use another invalid value
 
 	generateInfoScript(filename, title, editionUID);
 
