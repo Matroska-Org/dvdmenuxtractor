@@ -6,7 +6,7 @@ EXE dmxwizard
   DEFINE(QT_NO_DEBUG) QT_NO_DEBUG_STREAM
 
   INCLUDE ../dmx
-  INCLUDE ../dmx/libdvdread
+  INCLUDE ../dmx/libdvdread/src
   INCLUDE(COMPILER_MSVC) ../dmx/libdvdread/win32
   
   INCLUDE "$(QTDIR)/include"

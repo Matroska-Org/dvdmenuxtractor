@@ -1,558 +1,2261 @@
-2003-02-22 23:28  hjort
+commit 2b8f60f0c4efd85f17116a5443851d4bb4a288b7
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Wed Mar 25 14:55:05 2015 +0100
 
-	* NEWS: Update NEWS for 0.9.4.
+    Update NEWS for 5.0.3
+
+commit 107ca98775df1eb953881acd8df5471e8bcc88cd
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Wed Mar 25 14:32:38 2015 +0100
+
+    Update dvd_reader version too
 
-2003-02-22 22:42  hjort
+commit a76a31f0f909200a96eecffe6ea3292f3aa2374f
+Author: Thomas Guillem <thomas@gllm.fr>
+Date:   Fri Mar 13 17:03:13 2015 +0100
 
-	* configure.in: Version 0.9.4.
+    Update NEWS for 5.0.3
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
 
-2003-02-16 18:53  norpan
+commit 85b6663a59290f1cda175690daaf89eb433430bc
+Author: Thomas Guillem <thomas@gllm.fr>
+Date:   Fri Mar 13 17:03:12 2015 +0100
 
-	* libdvdread.spec: spec file (moved from oglespecs)
+    dvd_reader: cache IFO and BUP files (only for images files)
+    
+    It reduces the number of read/seek accesses
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit af446d463a15fb08f95f8b84bfc89af395b6e1bc
+Author: KO Myung-Hun <komh78@gmail.com>
+Date:   Thu Jan 29 17:29:03 2015 +0900
+
+    ifo_types.h: fix 'warning: `gcc_struct' attribute directive ignored'
+    
+    gcc_struct has been supported since gcc 3.4.
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
 
-2003-02-13 23:34  hjort
+commit 574b886b733e8737e8cf17d9330049289e837ac3
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Wed Jan 28 17:17:32 2015 +0100
 
-	* dvdread/dvd_reader.c: If environment variable DVDREAD_NOKEYS is
-	set then skip the 'retrive all keys' step at start up.
+    Fix compilation when staticly linked to libdvdcss
+
+commit cd82f3072c75736dd0459738d12dbc0da0884f28
+Author: Thomas Guillem <thomas@gllm.fr>
+Date:   Wed Jan 28 16:30:31 2015 +0100
+
+    dvd_input: always init dev->dvdcss
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 8bda55f887d7d8e926f943977129e26eaf2ff02a
+Author: KO Myung-Hun <komh78@gmail.com>
+Date:   Mon Jan 19 13:23:58 2015 +0900
+
+    src/dvd_input.c: use dvdcss2.dll instead of dvdcss.dll on OS/2
+    
+    libtool creates a versioned dll on OS/2 as well.
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
 
-2003-02-13 23:10  hjort
+commit 6b86232c82503d65b3a5d25283ae5f9a7f66acc0
+Author: Thomas Guillem <thomas@gllm.fr>
+Date:   Wed Jan 28 14:45:52 2015 +0100
 
-	* configure.in, dvdread/Makefile.am, dvdread/dvd_reader.h: Bump
-	version number, bump libtool so version, add DVDREAD_VERSION
-	define.  use $host not $target in the configure script.
+    dvd_input.c: can link with dvdcss without new open_stream symbol
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
 
-2003-02-13 23:09  hjort
+commit 55465dba693864ea04f83455fa0f470b4fb957e4
+Author: Thomas Guillem <thomas@gllm.fr>
+Date:   Wed Jan 28 14:45:51 2015 +0100
 
-	* dvdread/ifo_print.c: More detailed printing of PGC.PG Playback
-	Mode and TT_SRPT.Playback Type.
+    dvd_input.c fix unused parameter warnings
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
 
-2003-02-13 23:06  hjort
+commit d14f83e4ab1bf7b5856898365a8c4bd2b107c041
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Tue Jan 27 16:37:12 2015 +0100
 
-	* dvdread/: dvd_input.c, dvd_input.h, dvd_reader.c, dvd_udf.c:
-	Change names of fuctions not intended to be visible outside the
-	library, so that they are not matched by the (DVD.*|ifo.*|nav.*)
-	regex.
+    Update NEWS for 5.0.2
 
-2003-02-11 21:06  hjort
+commit 40571a6f7bdbd7c5a8530675f3c082032ab540b3
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Tue Jan 27 16:34:48 2015 +0100
 
-	* dvdread/: dvd_reader.c, dvd_reader.h: The volsetid char arrays
-	should be unsigned.
+    Update .so version because of added API
 
-2003-01-31 22:03  hjort
+commit 6dfeb9b50421d98f7a228de05498d98eecd23f02
+Author: Thomas Guillem <tom@gllm.fr>
+Date:   Fri Oct 17 15:43:26 2014 +0200
 
-	* dvdread/dvd_reader.c: Bugfix, init dvd->css_title in Open.
+    add DVDOpenStream
+    
+    open a DVD Device using external read/seek callbacks (see libdvdcss).
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
 
-2003-01-26 02:47  hjort
-
-	* dvdread/dvd_reader.c: Ooops.
-
-2003-01-25 20:59  hjort
-
-	* dvdread/: dvd_reader.c, dvd_reader.h: DVDDiscID, add sanity
-	checks, fix coding style, add comments.
-
-2003-01-22 13:25  bjorn
-
-	* dvdread/: dvd_reader.c, dvd_reader.h, dvd_udf.c, dvd_udf.h: fixed
-	some warnings and changed some variables to unsigned
-
-2003-01-22 01:27  bjorn
-
-	* dvdread/: dvd_reader.c, dvd_reader.h, dvd_udf.c, dvd_udf.h: Added
-	DVDUDFVolumeInfo and DVDISOVolumeInfo.	Implemented caching for
-	part of the udf filesystem when read from a device.
-
-2003-01-22 01:25  bjorn
-
-	* src/ifo_dump.c: removed an unused variable
-
-2003-01-17 22:31  hjort
-
-	* TODO, configure.in, dvdread/ifo_read.c, dvdread/ifo_types.h: Add
-	commets, make PLT_MAIT table have level 1 first in the array not
-	last.
-
-2003-01-16 16:48  norpan
-
-	* dvdread/dvd_reader.c: Seems like DVDReadBlocks tries to decrypt,
-	which of course is not needed for ifo files. Back to using
-	DVDReadBytes.
-
-2003-01-13 15:18  norpan
-
-	* dvdread/Makefile.am: only export function names (in the so file)
-	that starts with DVD, ifo, or nav
-
-2003-01-12 10:33  norpan
-
-	* src/disc_id.c: lower case for disc id
-
-2003-01-12 10:33  norpan
-
-	* dvdread/dvd_reader.c: fixed bug, DVDDiscID now reads all of the
-	ifo file, and gives the same result as "cat *.ifo | md5sum -" in
-	the video_ts directory
-
-2003-01-12 01:49  norpan
-
-	* src/: .cvsignore, Makefile.am, disc_id.c: Added disc_id program,
-	to report disc id of a dvd
-
-2003-01-12 01:49  norpan
-
-	* dvdread/: Makefile.am, dvd_reader.c, dvd_reader.h: added
-	implementation of DVDDiscID
-
-2003-01-12 01:46  norpan
-
-	* dvdread/: md5.c, md5.h: md5 implementation (from textutils 2.1)
-
-2003-01-06 21:13  hjort
-
-	* dvdread/dvd_reader.c, dvdread/dvd_udf.c, dvdread/ifo_print.c,
-	dvdread/ifo_read.c, dvdread/nav_print.c, dvdread/nav_read.c,
-	src/play_title.c, src/title_info.c: Make config.h be included first
-	in all c files. Update copyright years.
-
-2003-01-06 20:57  hjort
-
-	* src/ifo_dump.c: Don't use getopt.
-
-2003-01-06 20:36  hjort
-
-	* dvdread/: ifo_print.c, ifo_read.c: Read and print Parental
-	Management Information Table.
-
-2003-01-06 20:33  hjort
-
-	* dvdread/: ifo_print.c, ifo_read.c: Read, keep around and print
-	the extra offset tables.  Add some checking to the multichannel
-	audio attributes.
-
-2003-01-06 20:07  hjort
-
-	* dvdread/ifo_types.h: Add MultiChannel Extension, correct Parental
-	Management Information and add some fields to keep various offset
-	tables around (req by Olaf Beck).
-
-2003-01-06 19:42  hjort
-
-	* dvdread/ifo_read.c: Oops, remember to byte swap the TMAP data,
-	since it's in bigendian format.
-
-2003-01-06 19:18  hjort
-
-	* dvdread/ifo_print.c: Remove unused level argument that we earier
-	used for controlling logging.
-
-2003-01-06 19:18  hjort
-
-	* configure.in: Change the configure help text s that it's clear
-	that the path argument to --with-libdvdcss is optional.
-
-2003-01-06 18:36  hjort
-
-	* bootstrap, configure.in: Correct the use of build tools and the
-	testing of the --enable-warnings flag.
-
-2003-01-02 21:13  hjort
-
-	* dvdread/nav_types.h: Add some comments.
-
-2002-12-31 00:49  hjort
-
-	* dvdread/nav_read.c: Argh, unbreak navRead_PCI for little endian
-	systems.
-
-2002-12-29 01:06  hjort
-
-	* configure.in, dvdread/Makefile.am, dvdread/dvd_input.c,
-	dvdread/dvd_input.h, src/Makefile.am: Add --with-libdvdcss which if
-	given makes us link to libdvdcss rather than trying to dlopen it at
-	runtime.
-
-2002-12-28 00:57  hjort
-
-	* dvdread/: ifo_print.c, ifo_types.h: Add application mode/info
-	fields to the audio attributes.
-
-2002-12-28 00:35  hjort
-
-	* dvdread/: ifo_print.c, ifo_types.h: More cleanups of the
-	attribute code.
-
-2002-12-27 23:56  hjort
-
-	* dvdread/: ifo_print.c, ifo_read.c, ifo_types.h: Add some more
-	fields to the video/subpicture attributes and the pgci_lu struct. 
-	Only touches things that where previously zero and/or unknown.
-
-2002-12-27 23:16  hjort
-
-	* configure.in: Change the behaviour of adding all the extra waring
-	flags to default to off.
-
-2002-12-27 23:14  hjort
-
-	* dvdread/ifo_types.h: Convert all // comments to /* .. */ ones.
-
-2002-12-27 22:58  hjort
-
-	* configure.in, dvdread/dvd_udf.c, dvdread/ifo_print.c,
-	dvdread/ifo_read.c, dvdread/nav_print.c, dvdread/nav_read.c: Remove
-	the last uses of assert.h from dvdread/.  Update comments in
-	configure.in.
-
-2002-12-24 18:01  hjort
-
-	* dvdread/dvd_reader.c: Opps, you shouldn't compare intergers with
-	NULL, thanks harm.
-
-2002-12-15 18:50  hjort
-
-	* configure.in, dvdread/nav_read.c, dvdread/nav_types.h: Fix
-	problem with alignment for Sun's Forte compiler.  Now you can use
-	either Forte or GCC to compile libdvdread.
-
-2002-12-15 18:00  bjorn
-
-	* dvdread/: Makefile.am, dvdread_internal.h, ifo_read.c,
-	nav_read.c: changed asserts to fprintfs
-
-2002-12-15 16:40  hjort
-
-	* .cvsignore: Update.
-
-2002-12-15 00:53  hjort
-
-	* dvdread/: ifo_read.c, ifo_read.h: The first play PGC structure is
-	only optional.
-
-2002-12-15 00:47  hjort
-
-	* configure.in, dvdread/bswap.h: Add support for FreeBSD endian
-	swap functions.
-
-2002-11-18 21:20  hjort
-
-	* dvdread/dvd_reader.c: Add some argument checking to the
-	functions.
-
-2002-08-18 17:19  hjort
-
-	* dvdread/: ifo_print.c, ifo_print.h, ifo_read.c, ifo_read.h,
-	ifo_types.h: Add types for VTS_TMAPT. Add read/parse functions for
-	VTS_TMAPT.  Add printing functions for VTS_TMAPT.
-
-2002-08-15 19:40  hjort
-
-	* bootstrap, acinclude.m4, configure.in: Check for inttypes.h, if
-	not found create a file with default choices.
-
-2002-08-11 18:50  hjort
-
-	* dvdread/nav_types.h: Update doxygen comments.
-
-2002-08-02 14:09  hjort
-
-	* dvdread/: dvd_input.c, dvd_input.h: Declare the function pointers
-	extern in the header file so there doesn't end up beeing more than
-	one instance.
-
-2002-07-26 23:27  hjort
-
-	* dvdread/: dvd_reader.h, nav_print.h, nav_read.h: More doxygen
-	comments.
-
-2002-07-12 21:44  hjort
-
-	* dvdread/dvd_reader.h: Big Doxygen documentation update.
-
-2002-07-12 20:38  hjort
-
-	* INSTALL: Newer version of the auto* tools.
-
-2002-07-11 23:48  hjort
-
-	* dvdread/ifo_read.c: Make DVDFileSeek_ inline and try opening .BUP
-	if .IFO fails.
-
-2002-07-11 23:40  hjort
-
-	* dvdread/dvd_reader.c: Don't segfault when trying to read past the
-	end of a file in Path mode.  Fix DVDReadBlocksPath so to not read
-	an extra block at the end.
-
-2002-07-11 23:38  hjort
-
-	* dvdread/: dvd_input.c, dvd_input.h, dvd_reader.c: Remove the
-	flags argument to DVDinput_seek function.  Update all calls. 
-	Change the calles that did tha key seach to instead use
-	DVDinput_title.
-
-2002-07-11 20:07  hjort
-
-	* dvdread/Makefile.am, src/Makefile.am: Fix so that one can build
-	outside the source tree.
-
-2002-05-26 00:45  d95hjort
-
-	* NEWS: Update.
-
-2002-05-25 23:50  d95hjort
-
-	* configure.in: Bump version for release.  Fix reveresed
-	comparison.
-
-2002-05-25 22:09  d95hjort
-
-	* dvdread/Makefile.am: Bump the library revision for the pending
-	release.
-
-2002-05-25 22:09  d95hjort
-
-	* dvdread/dvd_udf.c: Bug fix.  Make sure that the UDF code get all
-	the blocks it asks for (this is to avoid some spurious failiurs).
-
-2002-05-25 22:07  d95hjort
-
-	* dvdread/dvd_reader.c: More bug fixes from the big change.  Add
-	code to keep track of the current title key, calling DVDCSS_title
-	to change when needed.	Add more comments.  Add Mac OS X / Darwin
-	support.
-
-2002-05-25 21:58  d95hjort
-
-	* configure.in: Add Mac OS X / Dawin support, general cleanups and
-	remove the arch specific (and general) optimization flags.
-
-2002-05-25 21:43  d95hjort
-
-	* dvdread/: dvd_input.c, dvd_input.h: Mark some things const.
-
-2002-05-25 21:41  d95hjort
-
-	* dvdread/ifo_print.c: Mark two local functions as static.
-
-2002-05-25 21:38  d95hjort
-
-	* dvdread/ifo_read.c: Improve error messages and fix a ineffectual
-	assert.
-
-2002-04-22 17:42  d95hjort
-
-	* .cvsignore, configure.in, dvdread/Makefile.am,
-	dvdread/dvd_input.c, dvdread/dvd_input.h, dvdread/dvd_reader.c,
-	dvdread/dvdcss.h: Update to use new dvd_input abstraction layer. 
-	Can now use libdvdcss also for files on normal filsystem (non UDF
-	DVD image).
-
-2002-04-20 23:14  d95hjort
-
-	* dvdread/nav_types.h: Doxygen markup.
-
-2002-04-07 20:17  d95hjort
-
-	* dvdread/: nav_print.h, nav_read.h: More doxygen fixes.
-
-2002-04-07 19:51  d95hjort
-
-	* dvdread/bswap.h, dvdread/dvd_reader.c, dvdread/dvd_reader.h,
-	dvdread/dvd_udf.c, dvdread/dvd_udf.h, dvdread/ifo_print.h,
-	dvdread/ifo_read.h, dvdread/ifo_types.h, dvdread/nav_print.h,
-	dvdread/nav_read.c, dvdread/nav_read.h, dvdread/nav_types.h,
-	src/ifo_dump.c, src/play_title.c, src/title_info.c: Fix doxygen
-	errors in the copyright headers.
-
-2002-04-07 19:17  d95hjort
-
-	* dvdread/: dvd_reader.c, dvd_reader.h, dvd_udf.h, ifo_print.c,
-	ifo_print.h, ifo_read.c, ifo_read.h, ifo_types.h, nav_print.c,
-	nav_print.h, nav_read.c, nav_types.h: Fix copyright headers, adress
-	and years.
-
-2002-04-07 01:15  d95hjort
-
-	* Makefile.am: Add a newline.
-
-2002-04-07 01:14  d95hjort
-
-	* dvdread/ifo_print.c: Some small changes to what is printed for
-	video and audio attributes.
-
-2002-04-07 01:08  d95hjort
-
-	* dvdread/dvd_reader.h: Comments formating.
-
-2002-04-07 01:08  d95hjort
-
-	* dvdread/: ifo_read.c, ifo_read.h: Up the limit on the number of
-	commands that might be pressent in a PGC to 255.  It seems that
-	First Play PGC might be optional, at lest some DVDs are masterd
-	this way. Close open comment.
-
-2001-11-29 19:03  hh
-
-	* dvdread/: bswap.h, dvd_reader.c, dvd_reader.h, dvd_udf.c,
-	dvd_udf.h, ifo_print.h, ifo_read.h, ifo_types.h, nav_print.h,
-	nav_read.h, nav_types.h: Fixes from Marc Espie: Move include guards
-	to teh very start of the files.  Remove prameter names form
-	prototypes.
-
-2001-11-28 20:16  hh
-
-	* dvdread/: ifo_print.c, ifo_read.c: Handle mastering error on
-	Enemy of the State region 2 (de).
-
-2001-10-15 20:16  hh
-
-	* NEWS, configure.in, dvdread/bswap.h, dvdread/dvd_reader.c,
-	dvdread/ifo_read.c: Bump version to 0.9.2 for release (2001-10-11).
-	 Add support for BSD/OS. Make sure that the raw device is used on
-	all BSD variants for the CSS ioctls to work correctly.	Small bug
-	fix for access to mounted DVD via soft-links and a malloc/free
-	mistake.  Increase an assert level for pgcn numbers in the part of
-	title list.
-
-2001-09-28 20:25  hh
-
-	* dvdread/ifo_read.c: Allow Titles with 0 PTTs.  Allow a ptt_srpt
-	with an empty title.  Allow empty Cell Address tables.	Allow an
-	empty VOBU Address Map. This is to get "Magic Knight Rayearth:
-	Daybreak" to work, it might be master wrong.  Hard to se how a VTS
-	without any PGCs, Cells or VOBUs can be correct.
-
-2001-09-28 20:11  hh
-
-	* dvdread/: bswap.h, dvd_reader.c: Add NetBSD support.	Change the
-	code to use /dev/rcd* rather than /dev/cd* for all *BSD, this is
-	apparently needed to use the CSS ioctls.  Extend bswap with NetBSD
-	header.
-
-2001-09-18 03:53  hh
-
-	* dvdread/Makefile.am, dvdread/bswap.h, dvdread/dvd_reader.c,
-	dvdread/ifo_read.c, NEWS, configure.in: Change the way the endian
-	swaps are defined and make sure Solaris x86 works.  Fix from
-	Juergen Keil for a bug that caused libdvdread to close random fds. 
-	Update the limit on the number of pgcs in the pgcit to 10000.
-	Correct bug in 0.9.0 that made using a DVD located on a normal
-	filsystem impossible.  Bump the version in confgure.in to 0.9.1 and
-	the library revision number for the release.
-
-2001-09-18 02:36  hh
-
-	* Makefile.am, NEWS, configure.in, dvdread/Makefile.am,
-	dvdread/dvd_reader.c, dvdread/dvd_reader.h, dvdread/dvdcss.h,
-	dvdread/ifo_read.c, src/play_title.c: Include the bootstrap script
-	in the dist.  Change the package name to libdvdread (was dvdread). 
-	Use stat64 so that using an image file of a DVD should work. 
-	Change some more types in the interface to use int rather than
-	int32_t, also some internal changes of types.  Make it crack the
-	keys for all titles when opening the first as to not pause later
-	during playback.  Make sure to use the raw device name for access
-	under Solaris as using the CSS calls does not work on the block
-	device.  Make sure to get an absolute path for the directory name
-	used to search the mount table with.  Update/correct some error
-	messages.  This is what was released as libdvdread-0.9.0.
-
-2001-09-02 23:45  hh
-
-	* dvdread/Makefile.am, dvdread/dvd_udf.c, dvdread/dvd_udf.h,
-	src/play_title.c: Add some header files to the dependencies of
-	libdvdread so that they are included in the dist. Change the types
-	of UDFFindFile.  Update the partiotion handling in the UDF code. 
-	Correct play_title for the new incterface (expect blocks not bytes
-	read).
-
-2001-08-28 21:40  hh
-
-	* dvdread/ifo_read.c: Do not assume a pgci_ut has been
-	read/allocated. Check ponter before dereferring it to free
-	sub-componets.
-
-2001-08-28 21:34  hh
-
-	* dvdread/dvd_udf.c: Handle files with length 0. It faild and
-	reported the location and size of the director that a file was
-	located in if it didn't have any block allocated for it content.
-
-2001-08-27 02:13  vektor
-
-	* dvdread/: dvd_reader.c, dvd_reader.h:  - Added a GetFileSize
-	style call.
-	 - Made the close calls a bit more robust.
-	 - Removed an annoying printf.
-
-2001-08-22 23:59  hh
-
-	* NEWS, configure.in, dvdread/Makefile.am, dvdread/dvd_reader.c,
-	dvdread/dvd_reader.h, dvdread/dvd_udf.c, dvdread/ifo_print.c,
-	dvdread/ifo_read.c, dvdread/nav_print.c, dvdread/nav_read.c,
-	dvdread/nav_read.h, src/play_title.c: Some API changes, sorry for
-	this, but now the interface nolonger has any reference to off64_t. 
-	Remove unused length parameter to the nav functions.  Return blocks
-	read rather than bytes read for the DVDReadBlocks function.  Added
-	switch to enable lots of gcc waring flags. Correct lots of warnings
-	discoverd by the new flags.
-
-2001-08-18 01:22  hh
-
-	* README, configure.in, dvdread/dvd_reader.c, dvdread/dvd_reader.h:
-	Change _all_ occurrences of libcss to libdvdcss this time.
-
-2001-08-02 02:09  hh
-
-	* dvdread/dvdcss.h: Add the libdvdcss's header file so we compile
-	without it beeing installed.
-
-2001-08-02 02:05  hh
-
-	* TODO, configure.in, dvdread/Makefile.am, dvdread/bswap.h,
-	dvdread/dvd_reader.c, dvdread/dvd_reader.h, dvdread/dvd_udf.c,
-	dvdread/dvd_udf.h, dvdread/ifo_print.c, dvdread/ifo_read.c,
-	src/Makefile.am: Changed to use libdvdcss (from the VideoLAN guys)
-	by vektor.  FreeBSD fixes from Marc van Woerkom and OpenBSD fixes
-	from Bj�rn Sandell.  Small configure fixes to work better on *BSD
-	and other systems.  Fix src/Makefile.am thinko/typo.  Convert
-	dvd_udf to use uint[8|16|32]_t types.
-
-2001-08-02 01:27  hh
-
-	* AUTHORS: Give credit to Christian Wolff
-	<scarabaeus@convergence.de> for the UDF code.
-
-2001-06-25 04:32  hh
-
-	* .cvsignore, AUTHORS, COPYING, ChangeLog, Makefile.am, INSTALL,
-	NEWS, README, TODO, acinclude.m4, bootstrap, configure.in,
-	dvdread/.cvsignore, dvdread/Makefile.am, dvdread/bswap.h,
-	dvdread/dvd_reader.c, dvdread/dvd_reader.h, dvdread/dvd_udf.c,
-	dvdread/dvd_udf.h, dvdread/ifo_print.c, dvdread/ifo_print.h,
-	dvdread/ifo_read.c, dvdread/ifo_read.h, dvdread/ifo_types.h,
-	dvdread/nav_print.c, dvdread/nav_print.h, dvdread/nav_read.c,
-	dvdread/nav_read.h, dvdread/nav_types.h, src/.cvsignore,
-	src/Makefile.am, src/ifo_dump.c, src/play_title.c,
-	src/title_info.c: Initial revision
-
-2001-06-25 04:32  hh
-
-	* .cvsignore, AUTHORS, COPYING, ChangeLog, Makefile.am, INSTALL,
-	NEWS, README, TODO, acinclude.m4, bootstrap, configure.in,
-	dvdread/.cvsignore, dvdread/Makefile.am, dvdread/bswap.h,
-	dvdread/dvd_reader.c, dvdread/dvd_reader.h, dvdread/dvd_udf.c,
-	dvdread/dvd_udf.h, dvdread/ifo_print.c, dvdread/ifo_print.h,
-	dvdread/ifo_read.c, dvdread/ifo_read.h, dvdread/ifo_types.h,
-	dvdread/nav_print.c, dvdread/nav_print.h, dvdread/nav_read.c,
-	dvdread/nav_read.h, dvdread/nav_types.h, src/.cvsignore,
-	src/Makefile.am, src/ifo_dump.c, src/play_title.c,
-	src/title_info.c: libdvdread provides a simple foundation for
-	reading DVD-Video discs and images.
-	
-	It offers DVD applications:
-	
-	1. A simple abstraction for reading the files on a DVD	 
-	(dvd_reader.h).  2. A simple library for parsing the information
-	(IFO) files    (ifo_read.h/ifo_types.h).  3. A simple library for
-	parsing the navigation (NAV) packets	(nav_read.h/nav_types.h).
-
+commit f5ea91421d7912bffc8c5964409fd4454f1f5985
+Author: Steve Dibb <steve.dibb@gmail.com>
+Date:   Thu Jan 15 13:45:42 2015 -0700
+
+    Check for malloc fail before setting buffer
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 05c4e138c27ad372c2640506017b15f34b3dd92f
+Author: Steve Dibb <steve.dibb@gmail.com>
+Date:   Thu Jan 15 13:45:41 2015 -0700
+
+    Check for malloc fail before setting buffer
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit a3d569054c4e57d401137ba2e93d56afa5edd6d7
+Author: Steve Dibb <steve.dibb@gmail.com>
+Date:   Thu Jan 15 13:45:39 2015 -0700
+
+    Check for malloc fail before setting secbuf
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit e381f0766f4a1cf9b0cf526b38fca445080ba94e
+Author: Steve Dibb <steve.dibb@gmail.com>
+Date:   Thu Jan 15 13:45:38 2015 -0700
+
+    Remove unnecessary memset() calls because of calloc being used
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 76f813477a863873bea842e4ae182b3c4cacfc96
+Author: Steve Dibb <steve.dibb@gmail.com>
+Date:   Thu Jan 15 13:45:37 2015 -0700
+
+    Use calloc instead of malloc, then memset
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit a63467f9ec4dbdb63057439665a561ac68c6cae8
+Author: Steve Dibb <steve.dibb@gmail.com>
+Date:   Thu Jan 15 13:45:36 2015 -0700
+
+    Use calloc as a safety measure since ifoRead functions populate parts of the data independently
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit a097e3da09e8fe8d32115dad8992e4326536e8c5
+Author: Steve Dibb <steve.dibb@gmail.com>
+Date:   Thu Jan 15 13:45:33 2015 -0700
+
+    Use calloc as a safety measure since ifoRead functions populate parts of the data independently
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit a267a3bc899a72712baab8bc37fe59405dcd1904
+Author: Steve Dibb <steve.dibb@gmail.com>
+Date:   Thu Jan 15 13:45:32 2015 -0700
+
+    Use calloc as a safety measure since ifoRead functions populate parts of the data independently
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit fa457d44da389ad576c1e3b3a880401a796cdcbf
+Author: Steve Dibb <steve.dibb@gmail.com>
+Date:   Thu Jan 15 13:45:13 2015 -0700
+
+    Set freed pointers to NULL instead of zero
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 4507900078d45d7262dd26bfc6405c8faadd293c
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Sat Jan 3 01:16:48 2015 +0100
+
+    Add NEWS for 5.0.1
+
+commit 41c3e42563ad2e3f29cdbc28529d515f2e71384d
+Author: Evgeny Grin <karlson2k@kodi.tv>
+Date:   Tue Nov 25 18:46:33 2014 +0300
+
+    Fix partial read handling in DVDReadLBUDF()
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 72f87861057b9f3fcf929e9ba31312f72d9ab081
+Author: Evgeny Grin <karlson2k@kodi.tv>
+Date:   Tue Nov 25 18:12:45 2014 +0300
+
+    Fix partial read handling in file_read()
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 3dbbdfb548135eb73a06cf01ac0a0b3fde48b5ab
+Author: Andrew Clayton <andrew@digital-domain.net>
+Date:   Wed Nov 5 21:36:37 2014 +0000
+
+    src/md5: Replace the MD5 implementation with the FSF LGPL one
+    
+    With GCC 4.8.3 on x86_64 Fedora 20 we get the following warnings from
+    src/md5.c
+    
+        src/md5.c: In function 'md5_finish_ctx':
+        src/md5.c:102:3: warning: dereferencing type-punned pointer will
+         break strict-aliasing rules [-Wstrict-aliasing]
+        *(md5_uint32 *) &ctx->buffer[bytes + pad] = SWAP (ctx->total[0] <<
+         3);
+        ^
+        src/md5.c:103:3: warning: dereferencing type-punned pointer will
+         break strict-aliasing rules [-Wstrict-aliasing]
+        *(md5_uint32 *) &ctx->buffer[bytes + pad + 4] = SWAP
+         ((ctx->total[1] << 3) |
+        ^
+    
+    Rather than trying to fix this, Jean-Baptiste Kempf suggested it would
+    be better to replace this old implementation with something newer such
+    as the one used in VLC. So, this is what this does.
+    
+    We take src/misc/md5.c as src/md5.c and include/vlc_md5.h as src/md5.h
+    
+    md5.c had little changed in it, just some #include changes, I also had
+    to remove the restrict keyword from the AddMD5() function definition as
+    this is a C99 thing. This shouldn't really make much difference in this
+    usage.
+    
+    md5.h had the VLC_API macro usage removed and I removed the psz_md5_hash
+    function as it's not used.
+    
+    Finally DVDDiscID() in src/dvd_reader.c was changed to make use of this
+    new implementation. I tested this with the following program
+    
+        /*
+         * gcc -O2 -Wall -o dvddiscid dvddiscid.c -ldvdread
+         */
+    
+        #include <stdio.h>
+    
+        #include <dvdread/dvd_reader.h>
+    
+        int main(void)
+        {
+            int i;
+            dvd_reader_t *dvd;
+            unsigned char id[16];
+    
+            dvd = DVDOpen("/dev/sr0");
+            DVDDiscID(dvd, id);
+            DVDClose(dvd);
+    
+            for (i = 0; i < 16; i++)
+                 printf("%.2x", id[i]);
+            printf("\n");
+    
+            return 0;
+        }
+    
+    and get the same MD5 before and after this change.
+    
+        $ ./dvddiscid
+        a02f30eb3e76e624b766ec0248757901
+    
+        $ LD_LIBRARY_PATH=/opt/libdvdread/lib ./dvddiscid
+        a02f30eb3e76e624b766ec0248757901
+    
+    Signed-off-by: Andrew Clayton <andrew@digital-domain.net>
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+    Tested-by: Steve Dibb <beandog@gentoo.org>
+
+commit d2314b8c65ca1a3a92fcc9b46791375e24dbfd9b
+Author: Andrew Clayton <andrew@digital-domain.net>
+Date:   Tue Nov 4 01:08:32 2014 +0000
+
+    src/dvd_input.c: Annotate unused function parameters
+    
+    In libdvdread some functions take parameters that are unused. These
+    functions are for working without the libdvdcss library but have to have
+    the same prototype as the ones for working with it as these are
+    presented as single API.
+    
+    As such we get the following warnings from GCC (4.8.3)
+    
+        src/dvd_input.c: In function 'file_error':
+        src/dvd_input.c:186:37: warning: unused parameter 'dev'
+          [-Wunused-parameter]
+         static char *file_error(dvd_input_t dev)
+                                             ^
+        src/dvd_input.c: In function 'file_title':
+        src/dvd_input.c:210:35: warning: unused parameter 'dev'
+          [-Wunused-parameter]
+         static int file_title(dvd_input_t dev, int block)
+                                           ^
+        src/dvd_input.c:210:44: warning: unused parameter 'block'
+          [-Wunused-parameter]
+         static int file_title(dvd_input_t dev, int block)
+                                                    ^
+        src/dvd_input.c: In function 'file_read':
+        src/dvd_input.c:218:69: warning: unused parameter 'flags'
+          [-Wunused-parameter]
+         static int file_read(dvd_input_t dev, void *buffer, int blocks,
+                              int flags)
+                                  ^
+    The previous commit added a #define set to __attribute__((unused)) when
+    GCC is being used (empty otherwise). This can be used to inform the
+    compiler about such unused parameters and gets rid of those warnings.
+    
+    Signed-off-by: Andrew Clayton <andrew@digital-domain.net>
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit c10f0f7c909a26b7d3b4953924a6e88285aae19f
+Author: Andrew Clayton <andrew@digital-domain.net>
+Date:   Tue Nov 4 01:08:31 2014 +0000
+
+    configure.ac: Create an UNUSED #define for parameter passing
+    
+    Some functions in libdvdread take parameters that are unused, e.g
+    file_read() in dvd_input.c. These functions can't be changed to remove
+    the unused parameters as they are public API.
+    
+    GCC provides a __attribute__((unused)) annotation that can be used on
+    function parameters to inform the compiler of such and will squash
+    warnings of the following nature
+    
+        src/dvd_input.c: In function 'file_read':
+        src/dvd_input.c:218:69: warning: unused parameter 'flags'
+          [-Wunused-parameter]
+         static int file_read(dvd_input_t dev, void *buffer, int blocks,
+                              int flags)
+                                  ^
+    
+    A check is added to configure.ac for the use of GCC and if found it
+    creates an UNUSED #define set to __attribute__((unused)) otherwise it
+    just sets it empty.
+    
+    If compilers on other systems have a similar feature this check can be
+    adjusted to accommodate them.
+    
+    Signed-off-by: Andrew Clayton <andrew@digital-domain.net>
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 4d5cb54738bc79cbfd3ada4345eddd4b40d1ddb0
+Author: Andrew Clayton <andrew@digital-domain.net>
+Date:   Fri Oct 24 15:21:35 2014 +0100
+
+    src/nav_print.c: Fix several printf format strings
+    
+    There were several printf()'s in navPrint_HL_GI() & navPrint_BTNIT()
+    that were printing unsigned int's but were using %d for the format
+    specifier.
+    
+    Signed-off-by: Andrew Clayton <andrew@digital-domain.net>
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 0b9e76358a85a9789d21e3cc603508db03dd899a
+Author: Andrew Clayton <andrew@digital-domain.net>
+Date:   Fri Oct 24 15:21:34 2014 +0100
+
+    src/ifo_read.c: Reduce the scope of some variables
+    
+    Signed-off-by: Andrew Clayton <andrew@digital-domain.net>
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 15c9da69c8203179030cc890ece296f584e1f480
+Author: Andrew Clayton <andrew@digital-domain.net>
+Date:   Fri Oct 24 15:21:33 2014 +0100
+
+    src/ifo_print.c: Fix a couple of fprintf format strings
+    
+    In ifoPrint_TT_SRPT() there are a couple fprintf()'s that take an
+    unsigned int but %d was used for the format specifier.
+    
+    Signed-off-by: Andrew Clayton <andrew@digital-domain.net>
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit f5986d6b4c2f97ab3986e341c58a61e20593dc41
+Author: Andrew Clayton <andrew@digital-domain.net>
+Date:   Fri Oct 24 15:21:32 2014 +0100
+
+    src/dvd_udf.c: Reduce the scope of some variables
+    
+    Signed-off-by: Andrew Clayton <andrew@digital-domain.net>
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 13ec957c49ac3914786b5961f3615364c5022399
+Author: Andrew Clayton <andrew@digital-domain.net>
+Date:   Fri Oct 24 15:21:31 2014 +0100
+
+    src/dvd_reader.c: Reduce the scope of some variables
+    
+    Signed-off-by: Andrew Clayton <andrew@digital-domain.net>
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 5cdc819bedc1b050c81d81c3b063d37fe54080b8
+Author: Andrew Clayton <andrew@digital-domain.net>
+Date:   Fri Oct 24 15:21:30 2014 +0100
+
+    src/dvd_reader.c: Fix a couple of fprintf format strings
+    
+    In DVDReadBlocksPath() there are a couple of fprintf()'s displaying an
+    offset value, this value is an unsigned int but the format strings had
+    %d rather than %u.
+    
+    Signed-off-by: Andrew Clayton <andrew@digital-domain.net>
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit c6bd4ebab126e5ac0fc027d3d16d0acb1c784d88
+Author: Andrew Clayton <andrew@digital-domain.net>
+Date:   Fri Oct 24 15:21:29 2014 +0100
+
+    src/dvd_input.c: Reduce the scope of 'ret' in file_read
+    
+    The ret variable is only used wihin the while loop.
+    
+    Signed-off-by: Andrew Clayton <andrew@digital-domain.net>
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 71180022f3f6c55faf0bbe9ed9f7c4dc3be08ba3
+Author: Lawrence D'Oliveiro <ldo@geek-central.gen.nz>
+Date:   Thu Oct 2 04:50:52 2014 +0000
+
+    dvd_reader.c: fix a little memory leak
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit ab474a079bd9da3bc9637019c279752124ebf978
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Wed Oct 1 14:54:14 2014 +0200
+
+    Fix typo
+
+commit 654d4221884dd0ef03f04b9e2afd90ec4f3c743f
+Author: Thomas Klausner <wiz@NetBSD.org>
+Date:   Wed Oct 1 14:39:00 2014 +0200
+
+    Add DragonFly BSD support for bswap*().
+    
+    Signed-off-by: Thomas Klausner <wiz@NetBSD.org>
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit cb1ae8743e07e55311f48ea17e3c8c611b4bc35d
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Mon Sep 1 03:32:58 2014 +0200
+
+    On the road to 5.0.1
+
+commit 70d25decc685acfb072964ed8cf3de94bba6cbef
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Sat Aug 30 23:26:35 2014 +0200
+
+    free(NULL) is a no-op
+
+commit 874873d654fc523a2fa45af2abe2cf69599412af
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Thu Aug 28 08:50:29 2014 +0200
+
+    Force gcc-style packing
+
+commit 87f369dc49d639028b71ebb043f8fd8cc7b87c60
+Author: John Stebbins <jstebbins@jetheaddev.com>
+Date:   Fri Aug 22 10:43:58 2014 -0700
+
+    build: Allow building outside git tree
+    
+    Fixes failure to build if ChangeLog does not exist
+
+commit 620e5464f16dc110d850a207769d512b573f000d
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Mon Aug 4 23:07:18 2014 +0200
+
+    Win32: kill warnings about redefinition of fstat|wstat
+
+commit 849f6e58cc8812838be47045959eca400a80ef7d
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Mon Aug 4 19:44:40 2014 +0200
+
+    Warn when lseek is incomplete in file_read
+
+commit 8999b92630c46435f96bbaad564a2aaf211b2ce9
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Thu Jul 31 03:44:30 2014 +0200
+
+    Do not hardcode Tag Identifier
+
+commit 64dfc537f4c2a5f46d1673299c92d95e7f49257b
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Thu Jul 31 23:39:12 2014 +0200
+
+    build: Remove ChangeLog only on maintainer-clean, not distclean
+    
+    The file is automatically generated with Git, so in a distribution
+    tarball without Git metadata it cannot be regenerated once deleted.
+
+commit 4018b958d1d88c5ad486aca95b0fe1804eadbb98
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Thu Jul 31 23:37:59 2014 +0200
+
+    Ignore generated 'compile' Automake helper program and release tarballs
+
+commit 839feb210301366fced3be9afa3fde4703339bc1
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Wed Jul 30 22:27:51 2014 +0200
+
+    Increase the version in the dvd_reader.h header
+    
+    See Debian #532438
+
+commit f64e1aedae8f746b97037e41f4adc7c78bda9fa5
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Sun Jul 27 01:27:28 2014 +0200
+
+    Add -Wextra compilation flags
+
+commit a3a050adae15fe6585d4d2b9a5213e31d360081f
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Sun Jul 13 03:42:38 2014 +0200
+
+    On the road to 5.0.0
+
+commit a7cedb037147234e3dec1d75add729fdf98f84bb
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Sun Jul 13 01:54:08 2014 +0200
+
+    Update NEWS for 5.0.0
+
+commit 7c6206accb4f039d9171765f239afc48557e455f
+Author: Dominik 'Rathann' Mierzejewski <dominik@greysector.net>
+Date:   Wed Jun 11 12:16:26 2014 +0200
+
+    put changes present in 4.2.1 release in the NEWS file
+
+commit 59332a29770e0bbc4a8b02dfb0b9304fb50551a4
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Thu Jun 5 20:28:14 2014 +0200
+
+    Support Android
+    
+    I will not comment more on the stupidity of bionic...
+
+commit 75f8601ee3b19d8914528860f7e1d2906df4a411
+Author: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
+Date:   Sat May 17 10:26:00 2014 +0200
+
+    configure: fix build on NIOS II platform
+    
+    NIOS II is a CPU architecture from Altera, which uses 'nios2' as the
+    architecture part of the tuple. Unfortunately, 'nios2' matches the
+    current '*os2*' test done by libdvdread's configure script to detect
+    the OS/2 operating system. This leads to build issues as the build
+    process of libdvdread then tries to use OS/2 specific compiler
+    options, that do not exist in the gcc used for Linux/NIOS2.
+    
+    To fix this, this patch makes the test for OS/2 a little bit more
+    specific: in the case of the OS/2 operating system, the OS part of the
+    tuple contains just 'os2' (confirmed by looking at config.guess and
+    config.sub in the gnuconfig project). So using '*-os2-*' will properly
+    match the OS/2 operating system but not the NIOS II architecture.
+    
+    Signed-off-by: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 6733be216f17c75af74e61f0e4e1083492684796
+Author: Steve Dibb <beandog@gentoo.org>
+Date:   Thu May 15 19:20:59 2014 -0600
+
+    Clean up order of variables, display of output.
+    
+    Remove redundant check for video_attr.
+    
+    Rearrange checks for attributes to match same order as declarations.
+    
+    Move video unknown string to last displayed, similar to audio output, and use same naming scheme.
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit d59e891d05c0acda388061645cc033837a92a586
+Author: Steve Dibb <beandog@gentoo.org>
+Date:   Thu May 15 11:58:08 2014 -0600
+
+    Remain consistent with earlier code in function
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 15a8100907c0172b6c4f5b47a8264a6bc94432fe
+Author: Steve Dibb <beandog@gentoo.org>
+Date:   Tue May 13 09:46:52 2014 -0600
+
+    Remove unused 'level' parameter
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit cff267d99196c719017ab4d229eecea35e3e0cd1
+Author: Steve Dibb <beandog@gentoo.org>
+Date:   Tue May 13 09:46:51 2014 -0600
+
+    An IFO without a VTS TMAP is very common, remove warning
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit c3f1a56caa4f876ed3753935d95d93292cfd5ed7
+Author: Steve Dibb <beandog@gentoo.org>
+Date:   Wed May 7 13:09:15 2014 -0600
+
+    libdvdread: src/ifo_read.c Fix off-by-one error on displaying IFO filename
+    
+    Fixes incorrect warning:
+    
+    libdvdread: Invalid IFO for title 2 (VTS_02_0.BU).
+    
+    to:
+    
+    libdvdread: Invalid IFO for title 2 (VTS_02_0.BUP).
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 0cd997af4474b5026308195ecfb33a6016a9e7fb
+Author: Steve Dibb <beandog@gentoo.org>
+Date:   Thu Apr 24 16:42:21 2014 +0200
+
+    Fix crash in ifoRead_VTS_PTT_SRPT()
+    
+    In ifoRead_VTS_PTT_SRPT(), there's a lot of places where the
+    function will exit on a 'goto fail' call if the IFO is invalid.
+    
+    However, the check for the PGN value is only done later.
+    
+    This fixes it so that it fails earlier -- when the PGN is
+    originally set, and doesn't go through the other checks as well, trying to set
+    invalid data that will be referenced later.
+    
+    See VLC trac #10459
+
+commit 0538a5dbecc917c409c7ec62a7ff32b02ba1eb73
+Author: Steve Dibb <beandog@gentoo.org>
+Date:   Tue Apr 15 13:28:33 2014 -0600
+
+    libdvdread: remove unused variables; cleanup return syntax
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit d65889e7ba84799c3155006a7be7ee6a218288fc
+Author: KO Myung-Hun <komh78@gmail.com>
+Date:   Thu Apr 10 22:57:04 2014 +0900
+
+    src/dvd_read.c: fix a compilation warning on OS/2
+    
+    -----
+    src/dvd_reader.c: In function `DVDOpen':
+    src/dvd_reader.c:561: warning: implicit declaration of function `isalpha'
+    -----
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 9818650809d02ed9603686232ade3537234e74e8
+Author: KO Myung-Hun <komh78@gmail.com>
+Date:   Thu Apr 10 22:57:03 2014 +0900
+
+    configure: add additional flags to LDFLAGS on OS/2
+    
+    This allows to build a DLL and to open files in binary mode.
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 7ab8ba341f9c5c9182413d4727f11c18319ee76c
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Wed Apr 9 18:04:39 2014 +0200
+
+    Update NEWS for 4.9.9
+
+commit ecb9d1a94b10ec7177901ee4d2f667e2e95b5fac
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Wed Apr 9 17:55:24 2014 +0200
+
+    Preparing 4.9.9 release
+
+commit dab3e8c5556c15e05c67df5a307453dc95104d47
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Wed Apr 9 16:04:36 2014 +0200
+
+    Do not use an assert on ifo_print
+
+commit c8df1333414c3fb4608e071abd3ab008f9468ac6
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Wed Apr 9 16:00:00 2014 +0200
+
+    Better debug messages
+
+commit da3eee4113b31723aa9867820003e6268861b3e7
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Wed Apr 9 15:58:43 2014 +0200
+
+    Do not assert on broken DVDs
+
+commit 02d9e36e4be243c4c523a5b2b94045ea25c5cfd6
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Wed Apr 9 15:42:30 2014 +0200
+
+    Use NULL instead of 0 for pointers
+
+commit 595b47f662a99bd8bb21536f2ee55aa1873d9f2e
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Wed Apr 9 15:41:39 2014 +0200
+
+    More const on DVDReadBlocks* parameters :)
+
+commit d7d7c83c8baeed4eb71fe21856fbdcf061dfd373
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Wed Apr 9 14:04:05 2014 +0200
+
+    Do not dereference NULL on DVDCloseFile
+
+commit 86166870a6091554d693f8ae787939e3fea3526c
+Author: Timothy Gu <timothygu99@gmail.com>
+Date:   Sat Mar 29 14:46:57 2014 -0700
+
+    build: Fix --disable-apidoc configure option
+    
+    Signed-off-by: Timothy Gu <timothygu99@gmail.com>
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 7c743650d038ee280f990cfb7d5f867842ee7369
+Author: Richard Hulme <peper03@yahoo.com>
+Date:   Sun Jan 26 17:13:03 2014 +0100
+
+    Initialize dvd_reader_t struct in DVDOpenImageFile
+    
+    This ensures that the dvd_reader_t struct is initialized (e.g. the css_state
+    field is currently undefined if 'have_css' is false).
+    
+    The patch is part of a bigger MythTV-specific change by Chris Pinkham:
+    https://github.com/MythTV/mythtv/commit/3af3489
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 563c79a604ea96ecf48dcbd0da618bfdf7d6fb90
+Author: Marcel Mol <marcel@mesa.nl>
+Date:   Fri Feb 28 22:59:17 2014 +0100
+
+    Include config.h for all .c files
+    
+    As many compile time defines are now in config.h it should be
+    included in all .c files at the top.
+    (this allows support for large DVDs (>2GB) again.)
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit d8279964c809b2b253f13bd1fd8f0fc7bfcbc28b
+Author: Marcel Mol <marcel@mesa.nl>
+Date:   Sun Feb 23 11:50:38 2014 +0100
+
+    Fix .so version order
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 2a5060baf127b76decf1a6f88e3b340c219bbfa1
+Author: Diego Elio Pettenò <flameeyes@flameeyes.eu>
+Date:   Thu Feb 20 11:44:56 2014 -0800
+
+    build: provide -Im4 to ACLOCAL_AMFLAGS.
+    
+    Without adding m4 to the list of included directories, attributes.m4 is not found and will fail to expand the CC_* macros.
+
+commit c820067e14e097fb6a4fee0929bea2937d7cb473
+Author: Steve Dibb <steve.dibb@gmail.com>
+Date:   Mon Feb 17 00:14:04 2014 +0000
+
+    Fix DVDDiscID from reading non-existent IFO files
+    
+    In dvd_reader.c, the DVDDiscID function gets the MD5 from the total contents
+    of the IFO files on the disc.  However, it gets it by looping through the
+    the first ten IFO files, whether they exist or not.
+    
+    This results in spewage, where a disc has less than ten.  In this case,
+    Dragonheart only has two:
+    
+    libdvdnav:DVDOpenFileUDF:UDFFindFile /VIDEO_TS/VTS_03_0.IFO failed
+    libdvdnav:DVDOpenFileUDF:UDFFindFile /VIDEO_TS/VTS_04_0.IFO failed
+    libdvdnav:DVDOpenFileUDF:UDFFindFile /VIDEO_TS/VTS_05_0.IFO failed
+    libdvdnav:DVDOpenFileUDF:UDFFindFile /VIDEO_TS/VTS_06_0.IFO failed
+    libdvdnav:DVDOpenFileUDF:UDFFindFile /VIDEO_TS/VTS_07_0.IFO failed
+    libdvdnav:DVDOpenFileUDF:UDFFindFile /VIDEO_TS/VTS_08_0.IFO failed
+    libdvdnav:DVDOpenFileUDF:UDFFindFile /VIDEO_TS/VTS_09_0.IFO failed
+    
+    Instead of using a set limit of 10 IFOs, this patch counts the number of
+    VTSes existing on the DVD, and will use that number instead if it is less
+    than 10.
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit a2f211a6143d6db857a2cbcd10019f8a40fc1eb3
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Thu Jan 9 12:06:24 2014 +0100
+
+    This is libdvdread, not libdvdnav
+
+commit e601338843ba3d98c1df474446a2ffcbae5e7812
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Thu Jan 9 12:05:10 2014 +0100
+
+    dvd_reader: check malloc return
+
+commit dd43096558dc747b423979f8e42d3fe29853d76e
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Thu Jan 9 12:04:54 2014 +0100
+
+    dvd_reader: comment includes
+
+commit 450559f4bd426e6b0e85afe6399bc14a40332e7b
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Thu Jan 9 11:41:52 2014 +0100
+
+    dvd_input.c: comment includes and indent
+
+commit c8fb7d7308477e27592d602b9237366140e7c015
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Thu Jan 9 11:32:24 2014 +0100
+
+    Return NULL instead of 0 for methods returning a pointer
+
+commit d2b625a00b4f97b37bf790da314535b825a74e61
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Thu Jan 2 22:27:12 2014 +0100
+
+    nav_print: Remove printing bogus value for vobu_uop_ctl
+    
+    navPrint_PCI_GI() prints the values of a pci_gi_t struct, but for the embedded
+    user_ops_t substruct it just prints the first 32 bytes by pointer type punning.
+    Given that the latter is a large struct with members of system-dependent sizes
+    the result of this operation is often enough just a random value, so drop
+    printing the value altogether.
+    
+    src/nav_print.c:39:3: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+
+commit 8aa3eb851fd7158fbea378a9a17f60ef612f9b1e
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Thu Jan 2 23:56:36 2014 +0100
+
+    Remove svn-specific version.sh script.
+
+commit 0ef9c54cca7454f26ef79f3f65e964653b8b0952
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Thu Jan 2 22:44:09 2014 +0100
+
+    ifo_read: Mark literals as unsigned to avoid a comparison sign warning
+    
+    src/ifo_read.c:1402:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+
+commit 2033823209688d781bac986509b552acbeb8b0b3
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Sun Dec 1 22:42:44 2013 -0500
+
+    dvd_reader: Adjust variable type to avoid warning
+    
+    src/dvd_reader.c:1384:22: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+
+commit 38857cc93c79d0d5a5e791f1ffe3f80a9f1225a8
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Sat Nov 30 08:34:22 2013 -0500
+
+    ifo_read: Use correct printf length modifier
+    
+    src/ifo_read.c:1078:13: warning: format '%ld' expects argument of type 'long int', but argument 3 has type 'size_t' [-Wformat=]
+
+commit 22a6253aed121c4c54613ca8293c9e6f2ca18c16
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Sun Dec 1 22:46:39 2013 -0500
+
+    ifo_read: Do not compare integer variable against NULL
+    
+    src/ifo_read.c:1303:34: warning: comparison between pointer and integer [enabled by default]
+
+commit 2ab8c9fa65e293668103985398adb809cd88a5d9
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Thu Jan 2 16:43:04 2014 +0100
+
+    We need to check for dvdcss/dvdcss.h
+    
+    Else, we will not get the HAVE_DVDCSS_DVDCSS_H define and the code will
+    not work when statically compiled.
+    
+    It might be clever to remove that in the future, but one would need to
+    fix the code for that.
+
+commit ee24a03767f4b332b6a3943806a4398937d71a2f
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Sun Dec 29 19:23:29 2013 +0100
+
+    ifo_read: use info_length as size_t
+    
+    And kill a warning
+
+commit af599d51be9f568610fb59362c373fe0918173f5
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Sun Dec 29 19:13:27 2013 +0100
+
+    ifo_read: use info_length as a size_t
+    
+    This makes sense since it is used as a malloc' size.
+    And add a check in case it would have been negative
+
+commit f0bcc87c48a919106eeb1d26aeb2431090ad8e51
+Author: Mike Gorchak <mike.gorchak.qnx@gmail.com>
+Date:   Tue Feb 19 15:20:17 2013 -0800
+
+    Make libdvdread compile under QNX
+    
+    Signed-off-by: Erik Hovland <erik@hovland.org>
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 7431b74772663e050da78f97096aebc358561050
+Author: Paul Menzel <paulepanter@users.sourceforge.net>
+Date:   Wed Dec 4 22:44:23 2013 +0000
+
+    Use 0 instead of NULL in integer comparison
+    
+    Both GCC 4.8.2 and Clang 3.4 warn about a format mismatch in a
+    comparison.
+    
+            libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I.. -I.. -I../src -mno-ms-bitfields -O3 -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOUR
+    CE -MT ifo_read.lo -MD -MP -MF .deps/ifo_read.Tpo -c ifo_read.c  -fPIC -DPIC -o .libs/ifo_read.o
+            […]
+            ifo_read.c: In function 'ifoRead_PTL_MAIT':
+            ifo_read.c:1313:34: warning: comparison between pointer and integer [enabled by default]
+               if(ifofile->vmgi_mat->ptl_mait == NULL)
+    
+            libtool: compile:  clang -DHAVE_CONFIG_H -I. -I.. -I.. -I../src -O3 -Wall -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -MT ifo_read.
+    lo -MD -MP -MF .deps/ifo_read.Tpo -c ifo_read.c  -fPIC -DPIC -o .libs/ifo_read.o
+            […]
+            ifo_read.c:1313:34: warning: comparison between pointer and integer ('uint32_t' (aka 'unsigned int') and 'void *')
+              if(ifofile->vmgi_mat->ptl_mait == NULL)
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^  ~~~~
+    
+    Fix this by using the integer 0 instead of `NULL`.
+
+commit ec45ee7029c273f8b50afc6bc114ed819fd08b80
+Author: Paul Menzel <paulepanter@users.sourceforge.net>
+Date:   Wed Dec 4 22:40:17 2013 +0000
+
+    Abort when PTT search table has zero entries
+    
+    The static analyzer from LLVM/Clang 1:3.4~svn194079-1 reports a possible
+    allocation of size 0 in `libdvdread/src/ifo_read.c`.
+    
+            $ scan-build -o scan-build make
+            $ scan-view scan-build/2013-11-18-155601-16168-1
+    
+    When `vts_ptt_srpt->nr_of_srpts` is zero the allocation size is zero.
+    
+            vts_ptt_srpt->title = malloc(vts_ptt_srpt->nr_of_srpts * sizeof(ttu_t));
+    
+    The manual of the function `malloc` writes the following.
+    
+            If size is 0, then malloc() returns either NULL, or a unique
+            pointer value that can later be successfully passed to free().
+    
+    So check for 0 and, if it is, abort by going to the label `fail`.
+
+commit 4c2728ff2cdb73ffe7656135d546c1f8f4da87ff
+Author: Paul Menzel <paulepanter@users.sourceforge.net>
+Date:   Mon Nov 18 23:43:16 2013 +0000
+
+    Free `cached_dir_base` to fix memory leak
+    
+    The static analyzer from LLVM/Clang 1:3.4~svn194079-1 reports a memory
+    leak in `libdvdread/src/dvd_udf.c`.
+    
+            $ scan-build -o scan-build make
+            $ scan-view scan-build/2013-11-18-155601-16168-1
+    
+    The memory is allocated in
+    
+           	if((cached_dir_base = malloc(dir_lba * DVD_VIDEO_LB_LEN + 2048)) == NULL)
+    
+    and has to be freed before returning from the function.
+    
+    Signed-off-by: Paul Menzel <paulepanter@users.sourceforge.net>
+
+commit 7e74c39cbb1b67f35e2a37786fd7f711272a2b11
+Author: Paul Menzel <paulepanter@users.sourceforge.net>
+Date:   Tue Nov 12 00:10:38 2013 +0000
+
+    Document warnings generated by DVDs made with the VDR-to-DVD device LG RC590M.
+
+commit bc43469ad4c3ab62ca7b57ae148e563cb1f1e6ee
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Sun Dec 29 16:45:52 2013 +0100
+
+    Next version will be 5.0.0
+
+commit 94e9d32d52f3828260f81a9e8a0fb2e84de5403e
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Sun Dec 29 16:37:09 2013 +0100
+
+    Remove outdated libdvdread.spec.in
+
+commit e8657e1348b4e6ee0cf2273dc9cd4245834d1d2a
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Fri Nov 29 13:02:12 2013 -0500
+
+    Do not needlessly cast the return value of calloc/malloc.
+
+commit 96269118aff97ef74596a1765679cfee7f4bd018
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Mon Nov 18 12:56:40 2013 +0100
+
+    build: proper dependencies for ChangeLog generation target
+    
+    This fixes the ChangeLog file getting continuously rebuilt instead
+    of after each Git commit, which is the case now.
+
+commit 2fce1ff44c55e5d4e577cbbb91f74d5adccf08f0
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Mon Nov 18 12:54:11 2013 +0100
+
+    Makefile.am: reorder in alphabetic order
+
+commit 390eee7162d64a63703bca50eac9ca3058109e3b
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Mon Nov 18 12:53:42 2013 +0100
+
+    m4: remove unwanted tabs
+
+commit c13f7854f3f00d318215f72ba14a626a08fea5fb
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Mon Nov 18 12:52:52 2013 +0100
+
+    Doxygen: remove trailing spaces
+
+commit 12fbcb9601e48efbffb2caf1e630c9a400c3a6aa
+Author: Diego Elio Pettenò <flameeyes@flameeyes.eu>
+Date:   Mon Feb 18 09:35:20 2013 -0800
+
+    Remove obsolete script.
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 15c4713414c6bf5fc4a39703a5d8b3d22618380c
+Author: Diego Elio Pettenò <flameeyes@flameeyes.eu>
+Date:   Mon Feb 18 09:35:20 2013 -0800
+
+    build: follow in the path of libdvdcss for building.
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit d1626d187bd1e343740303caed95f792fc1268f5
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Mon Nov 18 12:36:15 2013 +0100
+
+    Update .gitignore, since there is no recursive build system anymore
+
+commit 6d8ee2d017c334b7e6706358b1caa0da49c6d7a7
+Author: Diego Elio Pettenò <flameeyes@flameeyes.eu>
+Date:   Wed Feb 6 10:46:20 2013 -0800
+
+    build: install basic documentation files.
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 31e7ee6dd44298c0b0ee6f39b228672ce02bf883
+Author: Diego Elio Pettenò <flameeyes@flameeyes.eu>
+Date:   Wed Feb 6 10:38:01 2013 -0800
+
+    Update base documentation.
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit aaae7f1e503610b2d8a286e2b911fac60d38098b
+Author: Diego Elio Pettenò <flameeyes@flameeyes.eu>
+Date:   Wed Feb 6 10:34:19 2013 -0800
+
+    build: cleanup configure
+    
+    This includes a new way to identify the dlopen library and dvdcss
+    (based on pkg-config) and dropping a bunch of unused tests.
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 9991d1720b824902628573abce89916700933c38
+Author: Diego Elio Pettenò <flameeyes@flameeyes.eu>
+Date:   Wed Feb 6 10:09:27 2013 -0800
+
+    build: drop dvdread-config and dvdread.m4.
+    
+    Use pkg-config to find the library, as that's more reliable and easier.
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 8d4a4520a9b1a12a03691a985fc36c6739f32e63
+Author: Diego Elio Pettenò <flameeyes@flameeyes.eu>
+Date:   Wed Feb 6 10:08:18 2013 -0800
+
+    Add a .gitignore file.
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit fb3d2192d11c3623bd9cf76f59aebba1f33dad15
+Author: Diego Elio Pettenò <flameeyes@flameeyes.eu>
+Date:   Wed Feb 6 10:06:11 2013 -0800
+
+    build: rewrite build system to not be recursive.
+    
+    This also removes a bunch of useless rules
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 76d114a2ab2f08cac9479c75f13bf8a57e413832
+Author: Diego Elio Pettenò <flameeyes@flameeyes.eu>
+Date:   Wed Feb 6 09:48:58 2013 -0800
+
+    configure: drop broken cross-compiling note.
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 75a64b96ba258085e3c6cdc95fb5669f2fc48f0a
+Author: Diego Elio Pettenò <flameeyes@flameeyes.eu>
+Date:   Wed Feb 6 09:46:52 2013 -0800
+
+    build: remove non-autotools based build system.
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit 8836a9ee0ef0be94e621d52bd7f641aa5b9725a8
+Author: Diego Elio Pettenò <flameeyes@flameeyes.eu>
+Date:   Sun Apr 28 12:14:21 2013 -0700
+
+    Rename UDFReadBlocksRaw to InternalUDFReadBlocksRaw to avoid exporting it on the library.
+
+commit 9441d69f394a5c60f3de43034d930709f8c50d8e
+Author: Diego Elio Pettenò <flameeyes@flameeyes.eu>
+Date:   Sun Apr 28 12:12:31 2013 -0700
+
+    Stop exposing symbols that were not exported by the library anyway.
+
+commit 1ca81aeb5f525af1bb04f11bdb9530874dce2015
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Wed Nov 6 14:40:25 2013 +0100
+
+    Delete outdated DEVELOPMENT-POLICY
+
+commit 56e7747459fc52685b62ef96bb8eedbb43aa11d5
+Author: Jean-Baptiste Kempf <jb@videolan.org>
+Date:   Wed Nov 6 14:39:46 2013 +0100
+
+    Update AUTHORS
+
+commit 2ae90c04bf29f5ca6f6cc000261df6c1f93a0974
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Wed Nov 6 13:42:43 2013 +0100
+
+    dvd_udf: Remove some set but not used variables
+
+commit 4a30ef54d59fa78fa833aef3446320d025714e31
+Author: Erik Auerswald <auerswal@unix-ag.uni-kl.de>
+Date:   Fri Oct 25 18:52:04 2013 +0200
+
+    Fix undefined variable warning in md5.h
+
+commit a4d681638f7fcdaf312c21e520f69cca44112cca
+Author: Roger Pack <rogerdpack2@gmail.com>
+Date:   Fri Oct 25 18:48:41 2013 +0200
+
+    Use correct name of the libdvdcss DLL on Windows
+
+commit d0b00d9fb7ec1949cd8fb924b337523645dc1973
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Sun Apr 28 21:02:02 2013 +0200
+
+    Replace deprecated dvdcss_title() function by dvdcss_seek().
+
+commit 5b4f6d6ca1d0e436c3e94496a8c6aef4d8032c37
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Sun Apr 28 19:50:29 2013 +0200
+
+    Do not extract libdvdcss version via dvdcss_interface_2.
+    
+    The variable is deprecated and only informs about the
+    libdvdcss API version, which carries no meaning nowadays.
+
+commit 0c6fcf06a0a893c2b0a5952023a25bed1c138ff6
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Sun Apr 28 19:48:23 2013 +0200
+
+    Replace uses of the deprecated dvdcss_handle type by dvdcss_t.
+
+commit ae73b827bd9dd8caa504a35a39c5f078e484790b
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Sun Apr 28 19:44:49 2013 +0200
+
+    Add missing strings.h #include for strcasecmp() / strncasecmp().
+
+commit b63bca6e89652d7332bf2f27e9dbe2e37c4809ad
+Author: Rafaël Carré <funman@videolan.org>
+Date:   Tue Feb 19 15:02:41 2013 +0100
+
+    Use the correct libraries for linker test
+
+commit 07dd88bdf0a68018e72ffee600ed9628b8ed3de0
+Author: Brad Smith <brad@comstyle.com>
+Date:   Sun Mar 10 23:12:33 2013 -0400
+
+    Fix pkg-config file for libdvdread when linking in libdvdcss
+    
+    I noticed support for linking to libdvdcss to libdvdread was
+    added. This fixes the pkg-config file to link in libdvdcss
+    to the respect project only when not using shared libs.
+    
+    Signed-off-by: Jean-Baptiste Kempf <jb@videolan.org>
+
+commit e6af513880c057139446c650b9d7eda9bbf2c122
+Author: Erik Hovland <erik@hovland.org>
+Date:   Tue Feb 5 18:48:10 2013 +0100
+
+    Add an error message
+
+commit ba4dd837afb546dd124c9098a8405c48c1494d9e
+Author: Benjamin Kerensa <bkerensa@gmail.com>
+Date:   Fri Jan 4 11:10:43 2013 -0800
+
+    Update src/ifo_print.c
+    
+    Fix Spelling: Address table not Adress table.
+
+commit f5c170bbdbd14cb532265bd536c440221556b15e
+Author: John Stebbins <stebbins@jetheaddev.com>
+Date:   Tue Oct 16 10:45:50 2012 -0700
+
+    Improve dlopen support on mingw
+    
+    Not all mingw build environments have libdl.  And those that do often
+    only have it in dll form which would have to be distributed with the
+    application.  So allowing use of the builtin version of dlopen in
+    dvdread is useful. This patch does the right thing if dlopen is not
+    found on the system and it adds a configure option to force use of the
+    builtin dlopen.
+    
+    It also seems that building dlopen broke at some point.  #includes
+    pointing to the wrong places.
+
+commit 435634ae4134245b707abad305056ffb3db1c77a
+Author: Erik Hovland <erik@hovland.org>
+Date:   Mon May 21 16:04:21 2012 -0700
+
+    Make sure the input device is closed on failure.
+    
+    In the error path, the dvd input device is not cleaned when the error
+    path is traversed.
+
+commit 88b528040577ec04dca586ecf87469bd6bdbe6fc
+Author: Ganael Laplanche <ganael.laplanche@martymac.org>
+Date:   Mon Apr 30 11:37:16 2012 -0700
+
+    Believe config.h instead of trying to detect endianness
+    
+    A few macros in md5.c were in that file trying to detect endian when
+    that wasn't necessary. config.h should already know what endian the
+    compilation is for. This commit uses config.h instead.
+
+commit 1f90e2063f59ee04937fb29e789f91c2db525c44
+Author: Erik Hovland <erik@hovland.org>
+Date:   Mon Apr 30 11:34:43 2012 -0700
+
+    Fix endian detection output
+    
+    When bigendian was detected it was not being written to config.h because
+    the test lacked the file output redirection.
+
+commit 2d38803befeb6ad595945cb6930da9e6932488c3
+Author: Erik Hovland <erik@hovland.org>
+Date:   Mon Apr 30 11:22:30 2012 -0700
+
+    Remove dvdread_incdir
+    
+    dvdread_incdir is redundant when configure2 already has incdir and it
+    seems that naming convention is more in-line w/ the rest of the script.
+
+commit bf78a9b9a5137df5f6763c2150d2efd67703d091
+Author: Rafaël Carré <funman@videolan.org>
+Date:   Tue Apr 17 12:03:43 2012 -0700
+
+    Fix mount point -> device name on OSX
+    
+    getfsent() only returns '/' entry on my system (10.8)
+    
+    I only have 10.7 around to test, but this bug was reported ages ago:
+    https://trac.videolan.org/vlc/ticket/4069
+    
+    I don't have a BSD, so I can't test it on BSD too but I don't see why
+    this code couldn't be shared on all BSD.
+
+commit dd5e464ff4d30e9e59a88b9567992ba670da8e02
+Author: LRN <lrn1986@gmail.com>
+Date:   Tue Apr 17 10:40:41 2012 -0700
+
+    libdvdread uses internal dlfcn on W32, unconditionally
+    
+    On W32 libdvdread unconditionally uses msvc/contrib/dlfcn.c
+    While this allows libdvdread to be compiled out of the box, it
+    prevents it from linking to any other dlfcn implementation. Namely -
+    to dlfcn-win32 [1] (which is somewhat more POSIX-compliant).
+    
+    Note that LDFLAGS modification should go AFTER (!) all AC_CHECK_LIB
+    calls, because -no-undefined is no longer valid as a compiler option.
+    
+    [1] http://code.google.com/p/dlfcn-win32/
+
+commit ec537474ae58366750738ac127f1e255676d6d9c
+Author: Rafaël Carré <funman@videolan.org>
+Date:   Wed Nov 30 13:41:31 2011 -0800
+
+    Add --enable-libdvdcss to the autotools install
+    
+    This commit adds the argument --enable-libdvdcss (off by default). When
+    used it directly links libdvdcss into libdvdread. This prevents
+    libdvdread from having to use dlopen() to get at the libdvdcss
+    functions.
+    
+    Currently this feature is used when building VLC for mingw32 and darwin.
+
+commit 30b4cbfd559de1106fb42cbb06ac59d8775f75a2
+Author: KO Myung-Hun <komh78@gmail.com>
+Date:   Wed Nov 16 16:25:08 2011 -0800
+
+    dvd_udf.h and bitreader.h are not in src
+    
+    Due to this, 'make distdir' fails.
+
+commit 22a6105bbd67f1c03b54b5805c8e2032c616f8c1
+Author: Erik Hovland <erik@hovland.org>
+Date:   Mon Nov 14 16:46:13 2011 -0800
+
+    Remove an over aggressive 0 -> NULL change
+
+commit 3628fa7f662afeb3f2b7877a6216756815cdec22
+Author: Erik Hovland <erik@hovland.org>
+Date:   Mon Nov 14 16:38:45 2011 -0800
+
+    Comment to explain the need of config.h
+
+commit 83c9abf5abc72e193274b3684452cc02be9f1be5
+Author: Erik Hovland <erik@hovland.org>
+Date:   Mon Nov 14 16:34:35 2011 -0800
+
+    Replace tab w/ spaces
+
+commit 378515aa1f9f54de44ce3a136faed4dfb6688518
+Author: John Stebbins <stebbins@jetheaddev.com>
+Date:   Sat Nov 12 12:29:23 2011 -0800
+
+    Sanitize PTT start offsets
+    
+    If the start offset points past the last_byte (outside the region read) stop
+    reading PTTs and adjust nr_of_srpts.
+    
+    Fixes Transformers 3.
+
+commit 0de97440f330cf7fac5839d59d0f5849e24024bb
+Author: Erik Hovland <erik@hovland.org>
+Date:   Mon Oct 10 15:49:49 2011 -0700
+
+    Update the TODO file
+
+commit 598041bfc4f1ccc41dccbc9486154ed8b4aa988e
+Author: Erik Hovland <erik@hovland.org>
+Date:   Mon Oct 10 15:08:24 2011 -0700
+
+    Use NULL instead of 0, this is C kids
+
+commit a3216430493442b8173b80e29f632060952dd5b9
+Author: Erik Hovland <erik@hovland.org>
+Date:   Mon Oct 10 15:07:14 2011 -0700
+
+    Check ifoRead_VTS before continuing
+
+commit 69d536a039756d0b686acfd35412f4432a021d5d
+Author: Erik Hovland <erik@hovland.org>
+Date:   Mon Oct 10 14:59:04 2011 -0700
+
+    Clear pf_temp to make sure it is initialized
+
+commit fd1b466ae8531fe44bc3a1640bf18e35ab9cea32
+Author: Erik Hovland <erik@hovland.org>
+Date:   Thu Jun 24 15:03:03 2010 -0700
+
+    Check the return value for potential errors
+
+commit de1d42e6110369b1fc5cd3e2b62c02d75fb5389c
+Author: Ingo Brückl <ib@wupperonline.de>
+Date:   Wed Dec 12 14:21:16 2012 +0000
+
+    Remove erroneous free().
+    
+    The address operator is wrong and the memory actually meant
+    to be freed has already been freed by ifoFree_PGC() anyway.
+
+commit b8151c7f324f853d274d61efe6c3b5c67bddabc5
+Author: Doug Springer <gpib@rickyrockrat.net>
+Date:   Sun Dec 9 22:03:38 2012 +0000
+
+    Fix a segmentation fault hit when reading the DVD 'The Express'.
+    
+    It prevents a read/write beyond end of an array due to using a length value
+    taken from the DVD, which can exceed the allocated size.
+    
+    https://bugs.launchpad.net/ubuntu/+source/libdvdread/+bug/894170
+    
+    Signed-off-by:  Bryce Harrington <bryce@canonical.com>
+
+commit 90838f7fb8a66aacbc4932ce64cf4e2834145663
+Author: John Stebbins <stebbins@jetheaddev.com>
+Date:   Sun Dec 9 21:07:59 2012 +0000
+
+    Accommodate duplicate language units and pgcs.
+    
+    Many dvd's are showing up that have titles that have numerous repeated
+    language unit tables and pgc's. The new release "Up" is an example.  I
+    believe "Dark Knight" also exhibits this. When scanning such discs
+    with lsdvd (and other programs that scan all titles), libdvdread will
+    consume many GB of data for these repeated elements and gets very slow
+    (e.g hours to read all titles) on OS X due to reading the duplicate
+    data from uncached raw devices.
+    
+    This patch detects duplicates and reference counts pgc's and pgcit's.
+    When a duplicate is detected, a reference count is incremented instead
+    of allocating new memory and re-reading the data.
+
+commit 6a0a67564fa717352bb82eef2baf316f9029221a
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sat Oct 8 22:04:05 2011 +0000
+
+    Update version number in changelogs.
+
+commit 66951df306c6a1a9c155c0d43aa4ed6a19756235
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sat Oct 8 21:49:29 2011 +0000
+
+    Point project website URL to the new location.
+
+commit 80d344626c17b9ee9b78390c5b40d46f90cdce7a
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Fri Oct 7 20:20:59 2011 +0000
+
+    Bump version to 4.2.0 for release.
+
+commit eab71a13839e6924f13c31999134437cae5e70fa
+Author: Frédéric Marchal <fmarchal@perso.be>
+Date:   Fri Oct 7 16:56:02 2011 +0000
+
+    Use NULL instead of 0 consistently.
+    
+    Since this is C and not C++, NULL is the stylistic choice
+    for pointer assignments and checking. This patch
+     changes all
+    places were ptl_mait is used in ifo_read.c.
+
+commit 6e32e10e6dada36906565b55bd8291acaa8f5257
+Author: Rémi Duraffort <ivoire@videolan.org>
+Date:   Thu Oct 6 21:02:00 2011 +0000
+
+    Fix memory leaks.
+
+commit da2c27283362207c0b9c89fb950f6cb06b99b8f0
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Thu Oct 6 17:23:06 2011 +0000
+
+    Update ChangeLog.
+
+commit 930794d4f9aebdf236a62b4621f358db40751462
+Author: Alexander Roalter <alex@roalter.it>
+Date:   Thu Oct 6 12:10:01 2011 +0000
+
+    Fix segfault when reading certain DVDs, for example "Thor".
+    This results from a new anti-copy scheme where the real video_ts.ifo
+    is hidden. Use of the decoy video_ts.ifo results in a unplayable DVD.
+
+commit b8c04e11868b077cfaed76434c411acf92cd65fb
+Author: Erik Hovland <ehovland@s383.jpl.nasa.gov>
+Date:   Sat Aug 13 17:28:48 2011 +0000
+
+    Make sure vts_ptt_srpt->title is freed
+    
+    title was being leaked when the error path is hit in this function.
+
+commit e0952d6b3c240d7bc949cf37045b8d82a1d4683b
+Author: John Stebbins <stebbins@jetheaddev.com>
+Date:   Sat Aug 13 17:28:45 2011 +0000
+
+    Fix crash when PTT is too short
+    
+    The PTT that is allocated and read is smaller than what gets referenced.
+    The data is byte-swapped in place which results in writes to memory
+    locations outside the allocated region. Region 1 True Grit is an
+    example of this.
+
+commit fbf6c750656e742e7e6ec36d384d895953717588
+Author: Erik Hovland <ehovland@s383.jpl.nasa.gov>
+Date:   Sat Aug 13 17:28:43 2011 +0000
+
+    Conditional style change
+
+commit c73bed252af21dadeefae4fffa6c56ade7a6fdac
+Author: Erik Hovland <ehovland@s383.jpl.nasa.gov>
+Date:   Sat Aug 13 17:28:40 2011 +0000
+
+    Clean up error paths.
+    
+    Clean up the error paths of the function using goto.
+
+commit 55885de15e3e14f08afefe5faf693cf6f0485988
+Author: Erik Hovland <ehovland@s383.jpl.nasa.gov>
+Date:   Sat Aug 13 17:28:37 2011 +0000
+
+    Clean up malloc calls
+    
+    Both malloc calls have a cast to the type of the pointer's
+    type. This is not necessary in C and is poor style.
+
+commit 0f8a29aca1d89b4b5432e78e5c14bbb60a3d9cae
+Author: Reimar Döffinger <Reimar.Doeffinger@gmx.de>
+Date:   Wed Jun 15 18:09:15 2011 +0000
+
+    Replace deprecated MOUNTED with _PATH_MOUNTED.
+    
+    This has the side-effect of fixing compilation with Android compiler.
+    (I am not aware of any good reason to compile libdvdread for Android though)
+
+commit 2b2dd48cbaa67fb1892826871689e771dc960295
+Author: Mike Castle <dalgoda.mplayer@gmail.com>
+Date:   Sat Feb 12 20:30:23 2011 +0000
+
+    Use a single = instead of ==
+    
+    test in the bourne shell and its derivatives actually specifies
+    = as the test for equality. == was accepted for a long time. But
+    dash does not. configure2 used == for a test. Which caused debian
+    to break if dash is used. This changes it to =.
+
+commit 468e8841e403bd2aa0bf39afbf8f8c92e549ae02
+Author: Frédéric Marchal <fmarchal@perso.be>
+Date:   Sun Jan 30 23:44:16 2011 +0000
+
+    Report which index failed reading
+    
+    When reading the parental management information, report what
+    index if that read failed. This should improve error reporting.
+
+commit 0fc8b0b332fd5512e8a80074c51e948751e33c56
+Author: Frédéric Marchal <fmarchal@perso.be>
+Date:   Sun Jan 30 23:44:13 2011 +0000
+
+    Replaces the hard-coded values
+    
+    The parental management structure has ratings levels. The size
+    of the bit mask is constant but magic values were being used
+    instead of named constants. This commit changes them to named
+    constants.
+
+commit 7e824eeeb22db7a4a66336cf38e3f60e06333749
+Author: Frédéric Marchal <fmarchal@perso.be>
+Date:   Sun Jan 30 23:44:09 2011 +0000
+
+    Inhibit double free of parental management information
+    
+    If reading the country data fails the point to the parental
+    management information is not nulled out. So it is possible for
+    the same structure to be freed twice. To inhibit this whenever
+    the country data read fails the structure pointer is assigned
+    null.
+
+commit f8afe06d245250fa87f16f51be9eba7fb1d30b85
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Sat Sep 11 15:15:43 2010 +0000
+
+    Move UDFReadBlocksRaw declaration to dvdread_internal.h.
+
+commit 5beb5939b713987be4f1f743c9f721f98b61d026
+Author: Reinhard Tartler <siretart@gmail.com>
+Date:   Sun Aug 8 22:49:28 2010 +0000
+
+    Fix some spelling issues
+
+commit 198bd175b0f27f6c1c11a0ac2eccdb11236c6d71
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Fri Aug 6 23:17:36 2010 +0000
+
+    Mark a large number of functions not used outside of the file as static.
+
+commit 3e74c7406c8775772665c9dc71152f118b674a81
+Author: Erik Hovland <ehovland@s383.jpl.nasa.gov>
+Date:   Sat Jul 31 00:21:01 2010 +0000
+
+    Provide BUP file support for more issues.
+    
+    The BUP file is only opened when the IFO file open fails. We have a
+    few times where file corruption could happen and we could use the
+    BUP instead. This patch attempts to address this by trying to
+    open the BUP if there is any reported error w/ the IFO. Inspiration
+    for this patch came from Rich E, thanks for the detailed bug
+    report and attempts at using earlier patches.
+
+commit a9457969862e4a8de98cbc20fab0f0498c3af66f
+Author: John Stebbins <stebbins@jetheaddev.com>
+Date:   Sat Jul 31 00:10:33 2010 +0000
+
+    Remove the special case test for uid=0
+    
+    Some package tools run configure as fakeroot.  This triggers code in
+    configure.ac that detects uid 0 to hardcode the installation path of the
+    m4 macros to the system aclocal macro dir.  This ignores any DESTDIR the
+    packaging tools may have set and installation fails since it attempts to
+    write to a system dir without proper permissions.
+
+commit 7506b3b567018024069cd2f9fba6dd421a46e99d
+Author: Erik Hovland <ehovland@s383.jpl.nasa.gov>
+Date:   Sat Jul 31 00:10:31 2010 +0000
+
+    Fix a spelling error in ifo_read.c
+
+commit 8c6757a6972da6c4f6c2cf46d2d6ac6de3349969
+Author: Erik Hovland <ehovland@s383.jpl.nasa.gov>
+Date:   Sat Jul 31 00:10:28 2010 +0000
+
+    Fix the test of whether disk names should be raw devices
+    
+    Darwin and BSD platforms disk device names might have to be converted
+    to raw device names. There is a check for this in the code. But it is
+    missing a very important 'r'. This fix made it into the 0.9.7 release
+    but did not make the commit to this repo when this repo was given the
+    API changes for 0.9.7 because it was not clear whether the fix was
+    still relevant.
+
+commit bba0c7da1a6dd2145031d09328fc1bc64576228b
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Tue Jul 20 09:30:13 2010 +0000
+
+    in DVDOPen() use isalpha() rather than checking the first char of the device against 'A'..'Z'
+
+commit 8c3ccdd65814955b7e7573488a1c0320237e80e7
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Tue Jul 20 08:09:41 2010 +0000
+
+    in OS2 and WIN32 when CSS is not available print the correct message using path rather than dev_name;
+
+commit 109ab4b32c469982ac2d0904c2c5462d08eafcf4
+Author: KO Myung-Hun <komh@chollian.net>
+Date:   Tue Jul 20 08:01:19 2010 +0000
+
+    as for win32 check for \video_ts as /video_ts in OS/2;
+
+commit 9a9f6ed895196f5456e55b915e1c8f0f0d9d3e8a
+Author: KO Myung-Hun <komh@chollian.net>
+Date:   Tue Jul 20 07:55:32 2010 +0000
+
+    As for win32 strip off the trailing \ if it is not a drive
+    on OS/2.
+
+commit 108d79d87b48df5b9763f0d4724e541495a1a1e9
+Author: KO Myung-Hun <komh@chollian.net>
+Date:   Tue Jul 20 07:51:43 2010 +0000
+
+    in OS/2 Use  DVDOpenImageFile() only if it is a drive;
+
+commit 777e4ebd3e92fbcb0248aa85e64e19cd12d39457
+Author: John Stebbins <stebbins@jetheaddev.com>
+Date:   Tue Jun 1 17:07:13 2010 +0000
+
+    Win32: large file support under Mingw to go over 2G limits
+
+commit 98c6341d3519da748e6d4a5fa88a6136b511564d
+Author: John Stebbins <stebbins@jetheaddev.com>
+Date:   Tue Jun 1 07:27:56 2010 +0000
+
+     in _WIN32 do a sanity check against \video_ts in addition to /video_ts, because both paths are admitted;
+
+commit 342f18a7b934aa0ba0f1ffd321c6998555631797
+Author: John Stebbins <stebbins@jetheaddev.com>
+Date:   Fri May 28 13:24:16 2010 +0000
+
+    fixed buffer size dimension in UDFGetPVD()
+
+commit 2da0d87a08b065b11ae848fdd9e025b62750dd49
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Fri Mar 5 21:16:01 2010 +0000
+
+    Detect arch endianness. src/bswap.h depends on WORD_BIGENDIAN being
+    defined on big-endian arch to select appropriate macros. configure2
+    did not produce that definition in config.h, so the code ended up
+    being incorrect on ppc and other big-endian arches.
+    
+    Approved by Nico.
+
+commit aa94788e0cbb0e0d26a62c067a36c0e9b650f7ac
+Author: Jindrich Makovicka <makovick@KMLinux.fjfi.cvut.cz>
+Date:   Thu Mar 4 19:14:17 2010 +0000
+
+    add bounds checking in UDFFileEntry
+    
+    Some badly mastered DVDs can have set bogus lengths of the Allocation
+    Descriptors, causing a segfault. This check ensures that the total entry
+    length does not exceed DVD logical block size before processing the entry.
+
+commit 929660a176e2a2ebccadfb8b2047c8dc55244e70
+Author: Reimar Döffinger <Reimar.Doeffinger@gmx.de>
+Date:   Sat Jan 30 15:15:23 2010 +0000
+
+    100l, initialize file descriptor to -1, not 0.
+    Fixes libdvdread closing stdin if it can't open the file/device.
+
+commit 310834ce5062d697b9edc4772c6be2bb635344cd
+Author: Erik Hovland <ehovland@s383.jpl.nasa.gov>
+Date:   Mon Dec 7 03:50:20 2009 +0000
+
+    Expose the dvd_stat_t struct.
+    
+    The commits that brought in the DVDFileStat() function from libdvdread
+    0.9.7 incorrectly made the stat struct opaque. This can't be done because
+    the API does not use any allocation or deallocation code. So callers of
+    DVDFileStat cannot declare stat structs. Since we are attempting to
+    maintain the API compatibility w/ those releases of libdvdread, the
+    struct has been brought into the header. Thanks again to Rathann for
+    bringing this issue to the dvdnav list. And thanks to the original
+    bug reportera(O. Rolland) to fedora.
+
+commit 877077dfc8f182e70fb0e6013213de5e5aa67d36
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sat Nov 14 21:00:17 2009 +0000
+
+    Update ChangeLog for next release.
+
+commit 884473719ee44783d4e0712b40677f2b4f69af27
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sat Nov 14 20:59:38 2009 +0000
+
+    Remove trailing whitespace.
+
+commit 03bd28dbf860a76d3c6a2d4a466e52f72d0cffab
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sat Sep 26 22:23:58 2009 +0000
+
+    bump version due to DVDFileStat addition
+
+commit 82c557cc997b0b91b1e0d631b1fb873c0e0c3fca
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sat Sep 26 22:23:26 2009 +0000
+
+    cosmetics: remove trailing whitespace
+
+commit 68325fd52fc7a7f3fb771519271d790875317e18
+Author: Erik Hovland <ehovland@s383.jpl.nasa.gov>
+Date:   Wed Sep 2 01:44:16 2009 +0000
+
+    Add *BSD porting bits from 0.9.7
+    
+    Both version 0.9.6 and 0.9.7 had some porting code put in for the
+    *BSDs. This code is untested by me, but I bet the OpenSolaris
+    and *BSD folk would love to have it.
+
+commit eb3064917c38b1b6a50d0c01d8ea2335dad6963f
+Author: Erik Hovland <ehovland@s383.jpl.nasa.gov>
+Date:   Wed Sep 2 01:43:21 2009 +0000
+
+    Add DVD file stat from version 0.9.7 to libdvdread
+    
+    A new function to do an informational read of the DVD file handle was
+    introduced to libdvdread 0.9.7 (or was it .6). Since libdvdread at
+    mplayerhq imported an older version of dvdread/dvdnav this part of
+    the API was not available. This commit places that function into
+    the library making this library complete in reference to 0.9.7.
+
+commit a82f611896043a3947a8c91ab7490554b45674f9
+Author: Erik Hovland <ehovland@s383.jpl.nasa.gov>
+Date:   Wed Sep 2 01:43:18 2009 +0000
+
+    Use parens to make the 'is present' mask explicit
+    
+    W/o parens the check for the 'is present' mask will not work right
+    because the ! operator will evaluate first. But by wrapping the
+    & operation in parens, we make it explicit that this goes first.
+    And so the is present flag will be properly evaluated in the
+    conditional
+
+commit 53c96e41f08f1cc8e0c1351d71de6357c2065ad6
+Author: Erik Hovland <ehovland@s383.jpl.nasa.gov>
+Date:   Wed Sep 2 01:34:23 2009 +0000
+
+    Remove empty if clause.
+    
+    An if clause is empty. This makes the else do all of the work
+    and still ends up w/ a larger object file because the if clause
+    is stuck into the object file. By moving to the logical not of
+    the if we can remove the empty clause.
+
+commit 4f8804bd2a5ad982d219c3b8baf6c465056ee679
+Author: John Stebbins <stebbins@jetheaddev.com>
+Date:   Tue Aug 4 21:21:49 2009 +0000
+
+    replaced conditional checks on MSC with _WIN32 to permit MINGW to mount and decrypt images;
+
+commit 53f03f4fb7463d812c9f6f8c29bbde3cee58f9be
+Author: KO Myung-Hun <komh@chollian.net>
+Date:   Mon Jun 8 22:02:37 2009 +0000
+
+    in OS/2 the device must be opened in binary mode;
+
+commit 9e2b8a0d92d80a263eb182699110ac7275fe203b
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Tue May 5 17:27:14 2009 +0000
+
+    Add #include for config.h. Several preprocessor definitions were used without
+    config.h being present. This would break the build if the definitions were not
+    provided on the compiler command line.
+
+commit 11782e00f1737777c609c6d27707525a24a70822
+Author: Erik Hovland <erik@hovland.org>
+Date:   Tue Apr 28 13:26:33 2009 +0000
+
+    removed unnecessary config.h;
+
+commit cb33e559b53fc16dc2de45549afbd1c05db16713
+Author: Erik Hovland <erik@hovland.org>
+Date:   Tue Apr 28 13:19:51 2009 +0000
+
+    modified DVDOpen() to use a unified DVDOpen_error label;
+
+commit 6ac7e2cd1c8721906bd34532857e3296c4d89d21
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Sat Apr 25 15:50:42 2009 +0000
+
+    Use __APPLE__ instead of __DARWIN__ in preprocessor check.
+    __DARWIN__ is not defined (by default) on Mac OS X and
+    __APPLE__ is used in other places throughout the code.
+
+commit 2851450b1a7ac2ffdeac6b54aea11784adce9ad1
+Author: Erik Hovland <erik@hovland.org>
+Date:   Sun Feb 15 18:30:24 2009 +0000
+
+    spelling fixes
+
+commit cb5b087bf18dd8c2f83679e04bb45999e2bbb44f
+Author: Reimar Döffinger <Reimar.Doeffinger@gmx.de>
+Date:   Wed Jan 7 17:14:23 2009 +0000
+
+    Fix path to dvd_reader.h
+
+commit 6b2e82a0165ec5577f0957a88b02865ed0d78ab5
+Author: Reimar Döffinger <Reimar.Doeffinger@gmx.de>
+Date:   Wed Dec 31 08:43:03 2008 +0000
+
+    Move installed headers into dvdread directory to make them easier to
+    use in a consistent way without installing.
+
+commit f886dd773d434d80b7a6b0423f3b4be8c2df7ecf
+Author: Reimar Döffinger <Reimar.Doeffinger@gmx.de>
+Date:   Wed Dec 31 08:41:23 2008 +0000
+
+    Remove trailing whitespace to avoid issues with precommit hook
+
+commit ff34e79135d7711c204049fd68034a5e1e96e7b6
+Author: Erik Hovland <erik@hovland.org>
+Date:   Sat Dec 13 14:27:51 2008 +0000
+
+    Because of ARM memory alignment issues the struct app_info has to be
+    packed.
+
+commit dcd2365d1d0428210b719fd716ea95156f49d016
+Author: Jorgen Lundman <lundman@lundman.net>
+Date:   Sun Oct 26 22:16:30 2008 +0000
+
+    cosmetics: sane indentation for case statements
+
+commit 97a71c2162cf6348ec71ae068e14d8d4ce386347
+Author: KO Myung-Hun <komh@chollian.net>
+Date:   Thu Oct 9 22:04:24 2008 +0000
+
+    OS/2 support
+
+commit 6a2125879d17ffb6ed22b59eb27e30bccf72b854
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Sun Sep 28 15:56:44 2008 +0000
+
+    Remove remaining tabs and trailing whitespace.
+
+commit ba5d1f1071103390ef4f6ac864425040e39f45d4
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Thu Sep 25 22:09:59 2008 +0000
+
+    cosmetics: function renaming from libdvdread 0.9.5
+
+commit acc67fea5a784a10f1f4b7736abb8f4f76626580
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Thu Sep 25 22:08:45 2008 +0000
+
+    cosmetics: one more hunk of indentation sync
+
+commit a0b74b4f1cec2236da4829d8061195e3aef3cadd
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Thu Sep 25 09:17:42 2008 +0000
+
+    cosmetics: Sync indentation and similar changes from libdvdread 0.9.5.
+
+commit d01c590280317e0715cd328138b03a73bc4d3c44
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Tue Sep 23 09:14:45 2008 +0000
+
+    cosmetics: Convert all tabs to spaces.
+
+commit 02c21c7574d45b96b867d780697b7b3c86af2c50
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Sun Sep 14 21:02:38 2008 +0000
+
+    Remove executable property from non-executable files.
+
+commit 08f926ba8cd5e80e50f8d1f5dae7176d35349d4c
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Sun Sep 14 20:53:47 2008 +0000
+
+    Add missing license header.
+
+commit 6b5e8cf5b4477ce19d54e1382a7ee839990abfc7
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Sun Sep 14 20:43:32 2008 +0000
+
+    Remove useless $Id$, $Log$ and $Name$ keywords.
+
+commit 1cb4fe0f0da933e6ab31b70167223bb36d48898d
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Sun Sep 14 20:37:38 2008 +0000
+
+    Use consistent multiple inclusion guards everywhere:
+    Combine them from a LIBDVDREAD_ prefix and the filename.
+
+commit f57a0294ff513c21febc7b991cf0f63a0538ad62
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Sun Sep 14 16:00:48 2008 +0000
+
+    Convert all ISO8859-1 sequences to proper UTF-8.
+
+commit 02bf994e187082282cbe662988202c8c5e668043
+Author: Diego Biurrun <diego@biurrun.de>
+Date:   Sun Sep 14 15:42:49 2008 +0000
+
+    Use consistent license headers everywhere: Fix FSF address and boilerplate.
+
+commit ec33a086a036aab00dd4ee648b62e4a0ded5ee94
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sun Sep 7 12:36:15 2008 +0000
+
+    Mention pkgconfig support.
+
+commit 1d21e6a16ce2c4d9398d5fda94f8ad7a893b5f99
+Author: Erik Hovland <erik@hovland.org>
+Date:   Sat Sep 6 21:55:51 2008 +0000
+
+    Remove all trailing  whitespace,
+
+commit 4e6d2d865c36f25707dd8e352a268d45ec0ca493
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Mon Sep 1 21:05:17 2008 +0000
+
+    Cosmetics: remove empty lines.
+
+commit 06d1306ac56cded3acda9f945a505695e582ce55
+Author: Erik Hovland <erik@hovland.org>
+Date:   Mon Sep 1 21:04:33 2008 +0000
+
+    Comments cleanup: fix spelling and grammar errors.
+
+commit bb36d730593d61e6653d438cba0efa7b245a94fb
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sun Aug 31 09:27:37 2008 +0000
+
+    Fix parallel make builds and set proper dependencies
+    on generated files.
+
+commit ea30d9c1cc65239e0713366b351af58f52738d4a
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sun Aug 31 00:41:21 2008 +0000
+
+    Generate pkgconfig files by default.
+
+commit 4330e40c874f71dc3ed072a615ba4bd6a40c2a73
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sun Aug 31 00:40:51 2008 +0000
+
+    Fix pkgconfig file generation for out-of-tree builds.
+
+commit 7da54483119d403b6823459bfdb76877316861f1
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sat Aug 30 22:32:00 2008 +0000
+
+    Sync autogen.sh with libdvdnav's.
+
+commit d418902be71d98f0fb07d614597b83a0e4fda42d
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sat Aug 30 22:22:58 2008 +0000
+
+    Remove useless (and in case of libdvdread, inacurrate) comment.
+
+commit 1cc4440d53a30f4fa5b2c4bd5d12a57a05dfe9a8
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sat Aug 30 21:09:30 2008 +0000
+
+    Sync ChangeLog with relevant parts from libdvdnav's. Rename to reflect split.
+
+commit e94c126e276b99a0fd5b2176424f69f13f7d9981
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sat Aug 30 20:10:36 2008 +0000
+
+    Drop unnecessary include.
+
+commit d2fb65c443705947606f230ebbfa6f5ebabeb7b1
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sat Aug 30 17:56:27 2008 +0000
+
+    Add missing include, fixes
+    libdvdread/src/nav_print.c:46: warning: implicit declaration of function ‘dvdread_print_time’
+
+commit c07a7a1be191043d68891e58bce8bba7224c3e71
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sat Aug 30 13:02:17 2008 +0000
+
+    Bump version before new release.
+
+commit da039a9a1b028e3e6e9c1cba9b99c33631f7c3ac
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sat Aug 30 11:54:03 2008 +0000
+
+    Rename includedir to $prefix/include/dvdread to remain API-compatible
+    with old upstream.
+
+commit 56b6479501f9c3f8f0d57f962e2fc1d1c0cec7a5
+Author: Erik Hovland <erik@hovland.org>
+Date:   Fri Jul 25 06:25:27 2008 +0000
+
+    removed duplicated #pragma directives and definitions;
+
+commit cb1503fbdea5e8590cc98c14a23e93b55bd8fe49
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Thu Jul 24 22:03:06 2008 +0000
+
+    added dvdread_print_time() and removed the file-static print_time() in nav_print.c
+
+commit faa1b2a4ef1e7e412bf7f7c6cc467719a7228a5a
+Author: Erik Hovland <erik@hovland.org>
+Date:   Wed Jul 16 07:46:33 2008 +0000
+
+    moved various pieces of duplicated code to free_ptl_mait();
+
+commit 8abe5cf150a110f4d472831bac691f462ffc1684
+Author: Dan Nicholson <dbn.lists@gmail.com>
+Date:   Sun Jul 13 21:11:08 2008 +0000
+
+    autotools pkgconfig support.
+
+commit 9c1171d75be01e568985abce9d51c3f4d7178650
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sun Jul 13 19:04:14 2008 +0000
+
+    pkgconfig support
+
+commit 20376cb6695934e0c7414286efe0225bfdb94100
+Author: Dominik Mierzejewski <dominik@greysector.net>
+Date:   Sun Jul 13 12:27:17 2008 +0000
+
+    cosmetics: fix indentation
+
+commit db91caffec8d26f4ff034a1f781aa6231d288641
+Author: Dan Nicholson <dbn.lists@gmail.com>
+Date:   Wed Jun 18 15:14:40 2008 +0000
+
+    Drop depcomp hack now that automake-1.6 is required
+    
+    The hack to distribute the depcomp script needed for automake versions
+    before 1.5 can be dropped since 1.6 is required now.
+
+commit a35430d4a7fbfd65992374ee350947854bfc37b1
+Author: Dan Nicholson <dbn.lists@gmail.com>
+Date:   Wed Jun 18 15:14:38 2008 +0000
+
+    Restore previous automake version 1.6 prerequisite
+    
+    Automake version 1.6 had been specified in AUTOMAKE_OPTIONS in the
+    top-level Makefile, but was inadvertently changed to 1.3 when
+    configure.ac was rewritten.
+
+commit dafda322c7423500bd95d9304c4dce189707ccce
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Sat Jun 14 13:01:30 2008 +0000
+
+    pass long LDFLAGS (modified with --extra-ldflags) to the building of libdvdread.so; what to do with the .a lib?
+
+commit 767f6c8a88fe2d0c2119fe5797d54789f0ead263
+Author: Dan Nicholson <dbn.lists@gmail.com>
+Date:   Thu Jun 12 21:40:07 2008 +0000
+
+    during the last commit some @ got translated by 'at-'
+
+commit e698c3a9fa4df43946e079b3a8a13f71d0a092f7
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Thu Jun 12 20:14:16 2008 +0000
+
+    moved to configure.ac the PREREQ of automake 1.3
+
+commit 3a3cfc599c823270ff3fcc11dffa42c88fd8c479
+Author: Dan Nicholson <dbn.lists@gmail.com>
+Date:   Thu Jun 12 20:12:17 2008 +0000
+
+    big cleanup patch for autotools;
+
+commit 106a2e34366784b6e05cc5b5e26be4d8f5c77560
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Thu Jun 12 20:04:59 2008 +0000
+
+    AC_PREREQ is better expressed as [N.M]
+
+commit 9fef869fe9574a0b88c4383d26fd5a41876610ab
+Author: Dan Nicholson <dbn.lists@gmail.com>
+Date:   Sun Jun 8 17:53:51 2008 +0000
+
+    remove inclusion that depended on DVDNAV_COMPILE;
+
+commit 9745c933455a237138530f0dc5df87b6378b30b0
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Sat Jun 7 07:18:54 2008 +0000
+
+    let misc/Makefile.common (included by all others) defines the smaller automake version we need
+
+commit f42e87f84fe1ad0eb9f725e41eb4a8b5662918e9
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Fri Jun 6 20:42:52 2008 +0000
+
+    simplified try_libtool_executable()
+
+commit b82fc7d748336650ea9b511d79aafa8491ba6c28
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Fri Jun 6 20:34:01 2008 +0000
+
+    reindentation
+
+commit 26aa098d28ea0829e8d4f302779ab5597a115a46
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Fri Jun 6 20:33:00 2008 +0000
+
+    simplified detect_autoconf() and removed some unexplainable nonsense
+
+commit 95839d3bda7394fbac7499ae28655e62b605fbea
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Thu Jun 5 10:41:05 2008 +0000
+
+    dvdnav->dvdread
+
+commit 4515ee7b5fdc97a1263a712c6d8bd84f4fe71f46
+Author: Erik Hovland <erik@hovland.org>
+Date:   Thu Jun 5 10:25:04 2008 +0000
+
+    memzero ICB before using it;
+
+commit 8b9fd328ae1baa007db55c69a6a512cd6191733d
+Author: Erik Hovland <erik@hovland.org>
+Date:   Thu Jun 5 10:22:07 2008 +0000
+
+    replaced *struct assignment with call to memcpy();
+
+commit 496b269aa5827a7812e8c3feb86fa77e7544da07
+Author: Erik Hovland <erik@hovland.org>
+Date:   Thu Jun 5 10:19:55 2008 +0000
+
+    fixed incorrect type cast;
+
+commit 2d5ba414ca68c5cf113b1179d391661b47259df8
+Author: Rafaël Carré <rafael.carre@gmail.com>
+Date:   Thu Jun 5 08:52:00 2008 +0000
+
+    gettimeofday() doesn't exist in windows, but recent mingw32 runtime
+    include a replacement that clashes with mingw32's one.
+    This patch will check for it in configure.ac and define the private
+    function only if gettimeofday() is not defined.
+
+commit fa6af23c4a2fe772136a3bf0524bb13b19b414b8
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Mon Jun 2 09:40:23 2008 +0000
+
+    changed version to 4.1.2
+
+commit 0b2efc9625e1e4ec3ba0c28cc69325f9ad464b8b
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Mon Jun 2 09:27:49 2008 +0000
+
+    fixed building with autoshit
+
+commit 4b97bc4c5a6d1f311fd2fcf7fc886afce085e242
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Mon Jun 2 09:24:35 2008 +0000
+
+    removed -ldvdnav and -I@includedir/libdvdread
+
+commit 8f2c2b9892f8f72ab776a6a0a81af699cdc04b8e
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Mon Jun 2 09:17:03 2008 +0000
+
+    dvdnav->dvdread
+
+commit ab55c46922fcf2bf1e0c450f31c7800d4d1cf9cd
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Mon Jun 2 09:15:26 2008 +0000
+
+    re-added dvdread-config.in copied from dvdnav-config.in
+
+commit b5941310dff4a1e5f46cab5a6a567609c4c6b4da
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Mon Jun 2 08:59:29 2008 +0000
+
+    renamed to libdvdread.spec.in
+
+commit c74e0f62603ebeeaa91b21e9aa1d4b70c08618fc
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Mon Jun 2 08:59:01 2008 +0000
+
+    dvdnav->dvdread
+
+commit 82fdcfcf161f62c6231d8998a2be266ff18065c5
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Sun Jun 1 16:00:59 2008 +0000
+
+    fix configure2 and Makefile to compile libdvdread
+
+commit efa9e924d2f48802493241e7bb0a54873894b352
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Sun Jun 1 15:58:24 2008 +0000
+
+    removed silly inclusion of vmcmd.h
+
+commit 2a6ee317671fd0d2cf752dd4504cc36726e13c19
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Sun Jun 1 15:22:42 2008 +0000
+
+    renamed to dvdread.m4
+
+commit 85663388ceeec918cd092a064a06fd2494a11091
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Sun Jun 1 15:16:10 2008 +0000
+
+    moved to src/ the sources files
+
+commit 25d1ef0a241fde655a78a7491af260e44ec7aa97
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Sun Jun 1 15:11:47 2008 +0000
+
+    another file can be removed
+
+commit 87b3a57fa68ff39902abe1a0f3d9922263ea8327
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Sun Jun 1 14:51:25 2008 +0000
+
+    first removal of dvdnav-specific code
+
+commit 8af2f3254c37d83a475628c8692cfd5945c2bbfe
+Author: Nico Sabbi <nicola.sabbi@poste.it>
+Date:   Sun Jun 1 08:39:07 2008 +0000
+
+    first split of dvdread; it's just a copy of dvdnav still to be cleaned

@@ -1,7 +1,12 @@
-
-* we don't have any functions for reading / printing TXT_MGI
-* rename zero_1 and add bitfields / macro constants in pgcit_srpt
-  - done, are any of the other pgci_t pgci_ut_t pgci_lu_t affected?
-* if an encrypted block is being read and libdvdcss is unavailable,
-  we should probably return 0 to help it fail.
-
+* Support DVDs with errors on them. So we can recover from corrupt sectors in
+  the .VOB. Be able to read the VAT ICB at the last sector of the UDF disk (see
+  function UDFGetAVDP)
+* Support Random and Shuffle Titles. Only sequential Titles are currently supported.
+* rework documentation
+* implement restriction levels:
+   0 - execute everything as the app commands
+   1 - do some sensible sanity checking
+   2 - be more careful, when operations are prohibited (like not seeking/jumping in the presence of stills or cell commands)
+   3 - fully respect user prohibitions
+* cleanup public API and fix libtool versioning
+* Update decoder.c with some of the more rare commands. Update already done to vmcmd.c

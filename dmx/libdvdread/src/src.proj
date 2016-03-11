@@ -1,51 +1,39 @@
 #include "*/*.proj"
 
-CON disc_id
+LIB dvdread
 {
-  USE dvdread
+  USE(TARGET_WIN) c99msvc
+  USE(TARGET_WIN) posixmsvc
+  DEFINE STDC_HEADERS
+  DEFINE(COMPILER_GCC) "UNUSED=""__attribute__((unused))"""
+  DEFINE(!COMPILER_GCC) "UNUSED="
 
-  SOURCE disc_id.c
+  SOURCE bitreader.c
+  SOURCE dvd_input.c
+  SOURCE dvd_reader.c
+  SOURCE dvd_udf.c
+  SOURCE ifo_print.c
+  SOURCE ifo_read.c
+  SOURCE md5.c
+  SOURCE nav_print.c
+  SOURCE nav_read.c
+
+  HEADER bswap.h
+  HEADER dvd_input.h
+  HEADER dvdread_internal.h
+  HEADER md5.h
+
+  HEADER dvdread/bitreader.h
+  HEADER dvdread/dvd_reader.h
+  HEADER dvdread/dvd_udf.h
+  HEADER dvdread/ifo_print.h
+  HEADER dvdread/ifo_read.h
+  HEADER dvdread/ifo_types.h
+  HEADER dvdread/nav_print.h
+  HEADER dvdread/nav_read.h
+  HEADER dvdread/nav_types.h
   
   INCLUDE(TARGET_WIN) ../win32
   INCLUDE ..
 }
 
-CON filestat
-{
-  USE dvdread
-
-  SOURCE filestat.c
-  
-  INCLUDE(TARGET_WIN) ../win32
-  INCLUDE ..
-}
-
-CON ifo_dump
-{
-  USE dvdread
-
-  SOURCE ifo_dump.c
-  
-  INCLUDE(TARGET_WIN) ../win32
-  INCLUDE ..
-}
-
-CON play_title
-{
-  USE dvdread
-
-  SOURCE play_title.c
-  
-  INCLUDE(TARGET_WIN) ../win32
-  INCLUDE ..
-}
-
-CON title_info
-{
-  USE dvdread
-
-  SOURCE title_info.c
-  
-  INCLUDE(TARGET_WIN) ../win32
-  INCLUDE ..
-}

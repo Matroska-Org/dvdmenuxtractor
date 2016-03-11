@@ -15,7 +15,7 @@ LIB dmx
   DEFINE __STDC_LIMIT_MACROS
   DEFINE(QT_NO_DEBUG) QT_NO_DEBUG_STREAM
 
-  INCLUDE libdvdread
+  INCLUDE libdvdread/src
   
   INCLUDE(COMPILER_MSVC) libdvdread/win32
   

@@ -12,7 +12,7 @@ CON dmxconsole
   
   INCLUDE ../dmx
   INCLUDE ../dmx/vobparser
-  INCLUDE ../dmx/libdvdread
+  INCLUDE ../dmx/libdvdread/src
   
   LIBS_RELEASE(COMPILER_MSVC) qtmain.lib
   LIBS_RELEASE(COMPILER_MSVC && CONFIG_STATIC) QtXml.lib
